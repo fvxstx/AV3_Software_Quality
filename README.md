@@ -77,7 +77,7 @@ No **primeiro commit** que você fizer, dê um **check no seu nome**
 abaixo:
 
 - [x] Fausto
-- [ ] Vini
+- [x] Vini
 - [ ] Diogo
 - [ ] Mateus
 - [ ] Danilo
