@@ -81,6 +81,7 @@ abaixo:
 - [ ] Diogo
 - [ ] Mateus
 - [ ] Danilo
+- [ ] Caue
 
 ---
 
