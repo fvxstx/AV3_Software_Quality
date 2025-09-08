@@ -5,9 +5,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class FridgeApiApplication {
-
+    
     public static void main(String[] args) {
         SpringApplication.run(FridgeApiApplication.class, args);
+        System.out.println("Hello World! Aplicação iniciada.");
     }
-
 }

@@ -17,16 +17,16 @@ public class Users {
     private UserType type;
     private LocalDateTime createdAt;
 
+    public Users() {
+
+    }
+
     public Users(String name, String email, UserType type , String password) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.type = type;
         this.createdAt = LocalDateTime.now();
-    }
-
-    public Users() {
-
     }
 
     public Long getId() {
