@@ -78,8 +78,8 @@ abaixo:
 
 - [x] Fausto
 - [x] Vini
+- [x] Mateus
 - [x] Diogo
-- [ ] Mateus
 - [ ] Danilo
 - [x] Caue
 
