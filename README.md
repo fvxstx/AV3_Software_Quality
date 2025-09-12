@@ -80,7 +80,7 @@ abaixo:
 - [x] Vini
 - [x] Mateus
 - [x] Diogo
-- [ ] Danilo
+- [x] Danilo
 - [x] Caue
 
 ---
