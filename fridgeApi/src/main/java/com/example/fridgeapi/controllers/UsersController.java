@@ -1,5 +1,6 @@
 package com.example.fridgeapi.controllers;
 
+import com.example.fridgeapi.dtos.LoginDto;
 import com.example.fridgeapi.models.Users;
 import com.example.fridgeapi.services.UsersService;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +27,10 @@ public class UsersController {
     public List<Users> getAllUserDetails(){
         return usersService.getAllUsers();
     }
+
+    @PostMapping("/login")
+    public String loginUser(@RequestBody LoginDto loginDto){
+        return usersService.loginUser(loginDto.email(), loginDto.password());}
 
     @PostMapping
     public String createUserDetails(@RequestBody Users users){

@@ -5,7 +5,7 @@ spring:
     password: '@Admin123'
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
 
 
 
