@@ -2,6 +2,7 @@ package com.example.fridgeapi.models;
 
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import jakarta.persistence.*;
 
@@ -14,6 +15,9 @@ public class Fridges {
     private boolean isOn;
     private String temperature;
     private LocalDateTime createdAt;
+    @OneToMany(mappedBy = "fridges", cascade = CascadeType.ALL)
+    private List<FridgeItems> fridgeItems;
+    
     public Fridges() {
     }
 

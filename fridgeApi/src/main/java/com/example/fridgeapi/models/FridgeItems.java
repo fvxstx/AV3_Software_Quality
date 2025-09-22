@@ -2,7 +2,13 @@ package com.example.fridgeapi.models;
 
 import java.time.LocalDateTime;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "fridge_items")
 public class FridgeItems {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private LocalDateTime validDate;
@@ -10,6 +16,9 @@ public class FridgeItems {
     private boolean isAvailableForChildren;
     private int quantity;
     private ItemType itemType;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fridgeId", insertable = false, updatable = false)
+    private Fridges fridges;
 
     public FridgeItems(Long id, String name, LocalDateTime validDate, Long fridgeId, boolean isAvailableForChildren, int quantity, ItemType itemType) {
         this.setId(id);
