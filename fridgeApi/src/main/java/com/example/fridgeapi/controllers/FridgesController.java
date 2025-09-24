@@ -7,5 +7,5 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/fridges")
 public class FridgesController {
-    //Fridges fridges = new Fridges(1L, true, "12.2");
+
 }

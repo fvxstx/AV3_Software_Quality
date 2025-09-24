@@ -5,15 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="474c4bfe-1eff-4247-8d9e-5ccc944a2ff5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/fridgeApi/src/main/java/com/example/fridgeapi/controllers/FridgesController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fridgeApi/src/main/java/com/example/fridgeapi/services/FridgesService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fridgeApi/src/main/java/com/example/fridgeapi/models/Users.java" beforeDir="false" afterPath="$PROJECT_DIR$/fridgeApi/src/main/java/com/example/fridgeapi/models/Users.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fridgeApi/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/fridgeApi/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fridgeApi/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/fridgeApi/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fridgeApi/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/fridgeApi/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fridgeApi/target/classes/com/example/fridgeapi/models/FridgeItems.class" beforeDir="false" afterPath="$PROJECT_DIR$/fridgeApi/target/classes/com/example/fridgeapi/models/FridgeItems.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fridgeApi/target/classes/com/example/fridgeapi/models/Fridges.class" beforeDir="false" afterPath="$PROJECT_DIR$/fridgeApi/target/classes/com/example/fridgeapi/models/Fridges.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fridgeApi/target/classes/com/example/fridgeapi/models/Users.class" beforeDir="false" afterPath="$PROJECT_DIR$/fridgeApi/target/classes/com/example/fridgeapi/models/Users.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fridgeApi/src/main/java/com/example/fridgeapi/repositories/FridgeRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fridgeApi/src/main/java/com/example/fridgeapi/controllers/FridgesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/fridgeApi/src/main/java/com/example/fridgeapi/controllers/FridgesController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fridgeApi/src/main/java/com/example/fridgeapi/models/Fridges.java" beforeDir="false" afterPath="$PROJECT_DIR$/fridgeApi/src/main/java/com/example/fridgeapi/models/Fridges.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fridgeApi/src/main/java/com/example/fridgeapi/services/FridgesService.java" beforeDir="false" afterPath="$PROJECT_DIR$/fridgeApi/src/main/java/com/example/fridgeapi/services/FridgesService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,23 +35,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.FridgeApiApplication.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "vini3",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "onboarding.tips.debug.path": "C:/Users/Vini/faculdade/Gestão e qualidade A3/AV3_Software_Quality/model/src/Main.java",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.FridgeApiApplication.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;vini3&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/Vini/faculdade/Gestão e qualidade A3/AV3_Software_Quality/model/src/Main.java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Vini\faculdade\Gestão e qualidade A3\AV3_Software_Quality\model\src\application" />

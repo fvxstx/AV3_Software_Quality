@@ -1,12 +1,8 @@
 package com.example.fridgeapi.services;
 
-import com.example.fridgeapi.models.Fridges;
+import org.springframework.stereotype.Service;
 
-import java.util.List;
+@Service
+public class FridgesService {
 
-public interface FridgesService {
-    List<Fridges> findAllFridges();
-    Fridges findFridgesById(Long id);
-    Fridges saveFridges(Fridges fridges);
-    void deleteFridgesById(Long id);
 }
