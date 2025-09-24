@@ -5,10 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="474c4bfe-1eff-4247-8d9e-5ccc944a2ff5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/fridgeApi/src/main/java/com/example/fridgeapi/repositories/FridgeRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fridgeApi/src/main/java/com/example/fridgeapi/controllers/FridgesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/fridgeApi/src/main/java/com/example/fridgeapi/controllers/FridgesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fridgeApi/src/main/java/com/example/fridgeapi/models/Fridges.java" beforeDir="false" afterPath="$PROJECT_DIR$/fridgeApi/src/main/java/com/example/fridgeapi/models/Fridges.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fridgeApi/src/main/java/com/example/fridgeapi/services/FridgesService.java" beforeDir="false" afterPath="$PROJECT_DIR$/fridgeApi/src/main/java/com/example/fridgeapi/services/FridgesService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
