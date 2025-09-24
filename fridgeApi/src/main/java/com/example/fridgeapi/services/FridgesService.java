@@ -21,6 +21,9 @@ public class FridgesService {
     public Fridges saveFridge(Fridges fridges){
         return fridgeRepository.save(fridges);
     }
+    public Fridges findById(Long id){
+        return fridgeRepository.findById(id).get();
+    }
     public void deleteFridge(Long id){
         fridgeRepository.deleteById(id);
     }
