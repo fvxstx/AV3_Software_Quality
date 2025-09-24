@@ -1,8 +1,12 @@
 package com.example.fridgeapi.models;
 
-import java.time.LocalDateTime;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
+import java.time.LocalDateTime;
+@Entity
 public class FridgeItems {
+    @Id
     private Long id;
     private String name;
     private LocalDateTime validDate;

@@ -5,7 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="474c4bfe-1eff-4247-8d9e-5ccc944a2ff5" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fridgeApi/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/fridgeApi/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fridgeApi/src/main/java/com/example/fridgeapi/controllers/FridgesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/fridgeApi/src/main/java/com/example/fridgeapi/controllers/FridgesController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fridgeApi/src/main/java/com/example/fridgeapi/controllers/UsersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/fridgeApi/src/main/java/com/example/fridgeapi/controllers/UsersController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fridgeApi/src/main/java/com/example/fridgeapi/models/FridgeItems.java" beforeDir="false" afterPath="$PROJECT_DIR$/fridgeApi/src/main/java/com/example/fridgeapi/models/FridgeItems.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fridgeApi/src/main/java/com/example/fridgeapi/services/FridgesService.java" beforeDir="false" afterPath="$PROJECT_DIR$/fridgeApi/src/main/java/com/example/fridgeapi/services/FridgesService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fridgeApi/src/main/java/com/example/fridgeapi/services/UsersService.java" beforeDir="false" afterPath="$PROJECT_DIR$/fridgeApi/src/main/java/com/example/fridgeapi/services/UsersService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fridgeApi/src/main/java/com/example/fridgeapi/services/impl/FridgesServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/fridgeApi/src/main/java/com/example/fridgeapi/services/impl/FridgesServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fridgeApi/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/fridgeApi/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fridgeApi/target/classes/com/example/fridgeapi/controllers/UsersController.class" beforeDir="false" afterPath="$PROJECT_DIR$/fridgeApi/target/classes/com/example/fridgeapi/controllers/UsersController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fridgeApi/target/classes/com/example/fridgeapi/models/FridgeItems.class" beforeDir="false" afterPath="$PROJECT_DIR$/fridgeApi/target/classes/com/example/fridgeapi/models/FridgeItems.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fridgeApi/target/classes/com/example/fridgeapi/models/Fridges.class" beforeDir="false" afterPath="$PROJECT_DIR$/fridgeApi/target/classes/com/example/fridgeapi/models/Fridges.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fridgeApi/target/classes/com/example/fridgeapi/services/UsersService.class" beforeDir="false" afterPath="$PROJECT_DIR$/fridgeApi/target/classes/com/example/fridgeapi/services/UsersService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
