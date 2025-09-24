@@ -23,7 +23,7 @@ cd repositorio
 
 ---
 
-## 🌱 Criando sua Própria Branch
+## 🌱 Criando sua Própria Branch!
 
 1.  Verifique se está na branch principal (`main` ou `master`):
 
@@ -78,8 +78,8 @@ abaixo:
 
 - [x] Fausto
 - [x] Vini
-- [ ] Diogo
-- [ ] Mateus
+- [x] Mateus
+- [x] Diogo
 - [ ] Danilo
 - [x] Caue
 

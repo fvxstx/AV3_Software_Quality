@@ -1,6 +1,18 @@
 package com.example.fridgeapi.models;
 
-public class Fridges {
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+import java.io.Serial;
+import java.io.Serializable;
+
+@Entity
+@Table(name = "tb_fridges")
+public class Fridges implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
+    @Id
     private Long id;
     private boolean isOn;
     private String temperature;
