@@ -1,13 +1,18 @@
 package com.example.fridgeapi.models;
 
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import jakarta.persistence.*;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name="users")
-public class Users {
+public class Users implements Serializable {
 
+    @Serial
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
