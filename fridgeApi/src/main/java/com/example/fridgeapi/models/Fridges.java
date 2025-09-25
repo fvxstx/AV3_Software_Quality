@@ -1,8 +1,6 @@
 package com.example.fridgeapi.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -13,6 +11,7 @@ public class Fridges implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private boolean isOn;
     private String temperature;
@@ -21,6 +20,9 @@ public class Fridges implements Serializable {
         this.id = id;
         this.isOn = isOn;
         this.temperature = temperature;
+    }
+
+    public Fridges() {
     }
 
     public Long getId() {
