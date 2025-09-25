@@ -1,0 +1,184 @@
+Index: fridgeApi/src/main/java/com/example/fridgeapi/models/FridgeItems.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.fridgeapi.models;\r\n\r\nimport java.time.LocalDateTime;\r\n\r\npublic class FridgeItems {\r\n    private Long id;\r\n    private String name;\r\n    private LocalDateTime validDate;\r\n    private Long fridgeId;\r\n    private boolean isAvailableForChildren;\r\n    private int quantity;\r\n    private ItemType itemType;\r\n\r\n    public FridgeItems(Long id, String name, LocalDateTime validDate, Long fridgeId, boolean isAvailableForChildren, int quantity, ItemType itemType) {\r\n        this.setId(id);\r\n        this.setName(name);\r\n        this.setValidDate(validDate);\r\n        this.setFridgeId(fridgeId);\r\n        this.setAvailableForChildren(isAvailableForChildren);\r\n        this.setQuantity(quantity);\r\n        this.setItemType(itemType);\r\n    }\r\n\r\n\r\n    public Long getId() {\r\n        return id;\r\n    }\r\n\r\n    public void setId(Long id) {\r\n        this.id = id;\r\n    }\r\n\r\n    public String getName() {\r\n        return name;\r\n    }\r\n\r\n    public void setName(String name) {\r\n        this.name = name;\r\n    }\r\n\r\n    public LocalDateTime getValidDate() {\r\n        return validDate;\r\n    }\r\n\r\n    public void setValidDate(LocalDateTime validDate) {\r\n        this.validDate = validDate;\r\n    }\r\n\r\n    public Long getFridgeId() {\r\n        return fridgeId;\r\n    }\r\n\r\n    public void setFridgeId(Long fridgeId) {\r\n        this.fridgeId = fridgeId;\r\n    }\r\n\r\n    public boolean isAvailableForChildren() {\r\n        return isAvailableForChildren;\r\n    }\r\n\r\n    public void setAvailableForChildren(boolean availableForChildren) {\r\n        isAvailableForChildren = availableForChildren;\r\n    }\r\n\r\n    public int getQuantity() {\r\n        return quantity;\r\n    }\r\n\r\n    public void setQuantity(int quantity) {\r\n        this.quantity = quantity;\r\n    }\r\n\r\n    public ItemType getItemType() {\r\n        return itemType;\r\n    }\r\n\r\n    public void setItemType(ItemType itemType) {\r\n        this.itemType = itemType;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/fridgeApi/src/main/java/com/example/fridgeapi/models/FridgeItems.java b/fridgeApi/src/main/java/com/example/fridgeapi/models/FridgeItems.java
+--- a/fridgeApi/src/main/java/com/example/fridgeapi/models/FridgeItems.java	(revision 50c62d80e4999bffd22e191157e0c36f75740e2a)
++++ b/fridgeApi/src/main/java/com/example/fridgeapi/models/FridgeItems.java	(date 1758759352358)
+@@ -1,8 +1,12 @@
+ package com.example.fridgeapi.models;
+ 
++import jakarta.persistence.Entity;
++import jakarta.persistence.Id;
++
+ import java.time.LocalDateTime;
+-
++@Entity
+ public class FridgeItems {
++    @Id
+     private Long id;
+     private String name;
+     private LocalDateTime validDate;
+Index: fridgeApi/.gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>HELP.md\r\ntarget/\r\n.mvn/wrapper/maven-wrapper.jar\r\n!**/src/main/**/target/\r\n!**/src/test/**/target/\r\n\r\n### STS ###\r\n.apt_generated\r\n.classpath\r\n.factorypath\r\n.project\r\n.settings\r\n.springBeans\r\n.sts4-cache\r\n\r\n### IntelliJ IDEA ###\r\n.idea\r\n*.iws\r\n*.iml\r\n*.ipr\r\n\r\n### NetBeans ###\r\n/nbproject/private/\r\n/nbbuild/\r\n/dist/\r\n/nbdist/\r\n/.nb-gradle/\r\nbuild/\r\n!**/src/main/**/build/\r\n!**/src/test/**/build/\r\n\r\n### VS Code ###\r\n.vscode/\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/fridgeApi/.gitignore b/fridgeApi/.gitignore
+--- a/fridgeApi/.gitignore	(revision 50c62d80e4999bffd22e191157e0c36f75740e2a)
++++ b/fridgeApi/.gitignore	(date 1758759352287)
+@@ -3,6 +3,7 @@
+ .mvn/wrapper/maven-wrapper.jar
+ !**/src/main/**/target/
+ !**/src/test/**/target/
++!**/src/main/**/resources
+ 
+ ### STS ###
+ .apt_generated
+Index: fridgeApi/src/main/java/com/example/fridgeapi/models/Fridges.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.fridgeapi.models;\r\n\r\npublic class Fridges {\r\n    private Long id;\r\n    private boolean isOn;\r\n    private String temperature;\r\n\r\n    public Fridges(Long id, boolean isOn, String temperature) {\r\n        this.id = id;\r\n        this.isOn = isOn;\r\n        this.temperature = temperature;\r\n    }\r\n\r\n    public Long getId() {\r\n        return id;\r\n    }\r\n\r\n    public void setId(Long id) {\r\n        this.id = id;\r\n    }\r\n\r\n    public boolean isOn() {\r\n        return isOn;\r\n    }\r\n\r\n    public void setOn(boolean on) {\r\n        isOn = on;\r\n    }\r\n\r\n    public String getTemperature() {\r\n        return temperature;\r\n    }\r\n\r\n    public void setTemperature(String temperature) {\r\n        this.temperature = temperature;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/fridgeApi/src/main/java/com/example/fridgeapi/models/Fridges.java b/fridgeApi/src/main/java/com/example/fridgeapi/models/Fridges.java
+--- a/fridgeApi/src/main/java/com/example/fridgeapi/models/Fridges.java	(revision 50c62d80e4999bffd22e191157e0c36f75740e2a)
++++ b/fridgeApi/src/main/java/com/example/fridgeapi/models/Fridges.java	(date 1758759352361)
+@@ -1,6 +1,17 @@
+ package com.example.fridgeapi.models;
+ 
+-public class Fridges {
++import jakarta.persistence.*;
++
++import java.io.Serial;
++import java.io.Serializable;
++
++@Entity
++@Table(name = "tb_fridges")
++public class Fridges implements Serializable {
++    @Serial
++    private static final long serialVersionUID = 1L;
++    @Id
++    @GeneratedValue(strategy = GenerationType.IDENTITY)
+     private Long id;
+     private boolean isOn;
+     private String temperature;
+@@ -11,6 +22,9 @@
+         this.temperature = temperature;
+     }
+ 
++    public Fridges() {
++    }
++
+     public Long getId() {
+         return id;
+     }
+Index: fridgeApi/pom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project xmlns=\"http://maven.apache.org/POM/4.0.0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n         xsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd\">\r\n    <modelVersion>4.0.0</modelVersion>\r\n    <parent>\r\n        <groupId>org.springframework.boot</groupId>\r\n        <artifactId>spring-boot-starter-parent</artifactId>\r\n        <version>3.5.5</version>\r\n        <relativePath/> <!-- lookup parent from repository -->\r\n    </parent>\r\n    <groupId>com.example</groupId>\r\n    <artifactId>fridgeApi</artifactId>\r\n    <version>0.0.1-SNAPSHOT</version>\r\n    <name>fridgeApi</name>\r\n    <description>fridgeApi</description>\r\n    <url/>\r\n    <licenses>\r\n        <license/>\r\n    </licenses>\r\n    <developers>\r\n        <developer/>\r\n    </developers>\r\n    <scm>\r\n        <connection/>\r\n        <developerConnection/>\r\n        <tag/>\r\n        <url/>\r\n    </scm>\r\n    <properties>\r\n        <java.version>21</java.version>\r\n    </properties>\r\n    <dependencies>\r\n        <dependency>\r\n            <groupId>org.springframework.boot</groupId>\r\n            <artifactId>spring-boot-starter-data-jpa</artifactId>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.springframework.boot</groupId>\r\n            <artifactId>spring-boot-starter-web</artifactId>\r\n        </dependency>\r\n\r\n        <dependency>\r\n            <groupId>com.mysql</groupId>\r\n            <artifactId>mysql-connector-j</artifactId>\r\n            <scope>runtime</scope>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.springframework.boot</groupId>\r\n            <artifactId>spring-boot-starter-test</artifactId>\r\n            <scope>test</scope>\r\n        </dependency>\r\n    </dependencies>\r\n\r\n    <build>\r\n        <plugins>\r\n            <plugin>\r\n                <groupId>org.springframework.boot</groupId>\r\n                <artifactId>spring-boot-maven-plugin</artifactId>\r\n            </plugin>\r\n        </plugins>\r\n    </build>\r\n\r\n</project>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/fridgeApi/pom.xml b/fridgeApi/pom.xml
+--- a/fridgeApi/pom.xml	(revision 50c62d80e4999bffd22e191157e0c36f75740e2a)
++++ b/fridgeApi/pom.xml	(date 1758759352292)
+@@ -38,7 +38,6 @@
+             <groupId>org.springframework.boot</groupId>
+             <artifactId>spring-boot-starter-web</artifactId>
+         </dependency>
+-
+         <dependency>
+             <groupId>com.mysql</groupId>
+             <artifactId>mysql-connector-j</artifactId>
+Index: fridgeApi/src/main/java/com/example/fridgeapi/models/Users.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.fridgeapi.models;\r\n\r\nimport jakarta.persistence.*;\r\n\r\nimport java.time.LocalDateTime;\r\n\r\n@Entity\r\n@Table(name=\"users\")\r\npublic class Users {\r\n\r\n    @Id\r\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\r\n    private Long id;\r\n    private String name;\r\n    private String email;\r\n    private String password;\r\n    private UserType type;\r\n    private LocalDateTime createdAt;\r\n\r\n    public Users(String name, String email, UserType type , String password) {\r\n        this.name = name;\r\n        this.email = email;\r\n        this.password = password;\r\n        this.type = type;\r\n        this.createdAt = LocalDateTime.now();\r\n    }\r\n\r\n    public Users() {\r\n\r\n    }\r\n\r\n    public Long getId() {\r\n        return id;\r\n    }\r\n    public void setId(Long id) {\r\n        this.id = id;\r\n    }\r\n\r\n    public String getName() {\r\n        return name;\r\n    }\r\n\r\n    public void setName(String name) {\r\n        this.name = name;\r\n    }\r\n\r\n    public String getEmail() {\r\n        return email;\r\n    }\r\n\r\n    public void setEmail(String email) {\r\n        this.email = email;\r\n    }\r\n\r\n    public UserType getType() {\r\n        return type;\r\n    }\r\n    public void setType(UserType type) {\r\n        this.type = type;\r\n    }\r\n\r\n\r\n    public String getPassword() {\r\n        return password;\r\n    }\r\n\r\n    public void setPassword(String password) {\r\n        this.password = password;\r\n    }\r\n\r\n    public LocalDateTime getCreatedAt() {\r\n        return createdAt;\r\n    }\r\n\r\n    public void setCreatedAt(LocalDateTime createdAt) {\r\n        this.createdAt = createdAt;\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/fridgeApi/src/main/java/com/example/fridgeapi/models/Users.java b/fridgeApi/src/main/java/com/example/fridgeapi/models/Users.java
+--- a/fridgeApi/src/main/java/com/example/fridgeapi/models/Users.java	(revision 50c62d80e4999bffd22e191157e0c36f75740e2a)
++++ b/fridgeApi/src/main/java/com/example/fridgeapi/models/Users.java	(date 1758759352366)
+@@ -2,12 +2,16 @@
+ 
+ import jakarta.persistence.*;
+ 
++import java.io.Serial;
++import java.io.Serializable;
+ import java.time.LocalDateTime;
+ 
+ @Entity
+ @Table(name="users")
+-public class Users {
++public class Users implements Serializable {
+ 
++    @Serial
++    private static final long serialVersionUID = 1L;
+     @Id
+     @GeneratedValue(strategy = GenerationType.IDENTITY)
+     private Long id;
+Index: fridgeApi/src/main/java/com/example/fridgeapi/services/UsersService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.fridgeapi.services;\r\n\r\nimport com.example.fridgeapi.models.Users;\r\n\r\nimport java.math.BigInteger;\r\nimport java.util.List;\r\n\r\npublic interface UsersService {\r\n    public String createUser(Users user);\r\n    public String updateUser(Users user);\r\n    public String deleteUser(BigInteger userId);\r\n    public Users getUser(BigInteger userId);\r\n    public List<Users> getAllUsers();\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/fridgeApi/src/main/java/com/example/fridgeapi/services/UsersService.java b/fridgeApi/src/main/java/com/example/fridgeapi/services/UsersService.java
+--- a/fridgeApi/src/main/java/com/example/fridgeapi/services/UsersService.java	(revision 50c62d80e4999bffd22e191157e0c36f75740e2a)
++++ b/fridgeApi/src/main/java/com/example/fridgeapi/services/UsersService.java	(date 1758759352347)
+@@ -1,10 +1,12 @@
+ package com.example.fridgeapi.services;
+ 
+ import com.example.fridgeapi.models.Users;
++import org.springframework.stereotype.Service;
+ 
+ import java.math.BigInteger;
+ import java.util.List;
+ 
++@Service
+ public interface UsersService {
+     public String createUser(Users user);
+     public String updateUser(Users user);
+Index: fridgeApi/src/main/java/com/example/fridgeapi/controllers/UsersController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.fridgeapi.controllers;\r\n\r\nimport com.example.fridgeapi.models.Users;\r\nimport com.example.fridgeapi.services.UsersService;\r\nimport org.springframework.web.bind.annotation.*;\r\n\r\nimport java.math.BigInteger;\r\nimport java.util.List;\r\n\r\n@RestController\r\n@RequestMapping(\"/users\")\r\npublic class UsersController {\r\n\r\n    UsersService usersService;\r\n\r\n    public UsersController(UsersService usersService) {\r\n        this.usersService = usersService;\r\n    }\r\n\r\n    @GetMapping(\"{userId}\")\r\n    public Users getUserDetails(@PathVariable(\"userId\") BigInteger userId){\r\n        return usersService.getUser(userId);\r\n    }\r\n\r\n    @GetMapping()\r\n    public List<Users> getAllUserDetails(){\r\n        return usersService.getAllUsers();\r\n    }\r\n\r\n    @PostMapping\r\n    public String createUserDetails(@RequestBody Users users){\r\n        return usersService.createUser(users);\r\n    }\r\n\r\n    @PutMapping\r\n    public String updateUserDetails(@RequestBody Users users){\r\n        return usersService.updateUser(users);\r\n    }\r\n\r\n    @DeleteMapping(\"{userId}\")\r\n    public String deleteUserDetails(@PathVariable(\"userId\") BigInteger userId){\r\n        return usersService.deleteUser(userId);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/fridgeApi/src/main/java/com/example/fridgeapi/controllers/UsersController.java b/fridgeApi/src/main/java/com/example/fridgeapi/controllers/UsersController.java
+--- a/fridgeApi/src/main/java/com/example/fridgeapi/controllers/UsersController.java	(revision 50c62d80e4999bffd22e191157e0c36f75740e2a)
++++ b/fridgeApi/src/main/java/com/example/fridgeapi/controllers/UsersController.java	(date 1758759352334)
+@@ -2,6 +2,7 @@
+ 
+ import com.example.fridgeapi.models.Users;
+ import com.example.fridgeapi.services.UsersService;
++import org.springframework.beans.factory.annotation.Autowired;
+ import org.springframework.web.bind.annotation.*;
+ 
+ import java.math.BigInteger;
+@@ -11,13 +12,14 @@
+ @RequestMapping("/users")
+ public class UsersController {
+ 
++    @Autowired
+     UsersService usersService;
+ 
+     public UsersController(UsersService usersService) {
+         this.usersService = usersService;
+     }
+ 
+-    @GetMapping("{userId}")
++@GetMapping("{userId}")
+     public Users getUserDetails(@PathVariable("userId") BigInteger userId){
+         return usersService.getUser(userId);
+     }
