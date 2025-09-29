@@ -10,25 +10,36 @@ import java.util.List;
 @RestController
 @RequestMapping("/fridges")
 public class FridgesController {
-    private final FridgesService fridgesService;
+
+    @Autowired
+    private FridgesService fridgesService;
 
     public FridgesController(FridgesService fridgesService) {
         this.fridgesService = fridgesService;
     }
-    @GetMapping
-    public List<Fridges> getFridges() {
-        return fridgesService.findAll();
-    }
+
     @GetMapping("/{id}")
-    public Fridges getFridgesById(@PathVariable Long id){
-        return fridgesService.findById(id);
+    public Fridges getFridge(@PathVariable Long id) {
+        return fridgesService.getFridge(id);
     }
+
+    @GetMapping
+    public List<Fridges> getAllFridges() {
+        return fridgesService.getAllFridges();
+    }
+
     @PostMapping
-    public  Fridges addFridge(@RequestBody Fridges fridge){
-        return fridgesService.saveFridge(fridge);
+    public String createFridge(@RequestBody Fridges fridge) {
+        return fridgesService.createFridge(fridge);
     }
-    @DeleteMapping
-    public void deleteFridgeById(@PathVariable Long id){
-        fridgesService.deleteFridge(id);
+
+    @PutMapping
+    public String updateFridge(@RequestBody Fridges fridge) {
+        return fridgesService.updateFridge(fridge);
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteFridge(@PathVariable Long id) {
+        return fridgesService.deleteFridge(id);
     }
 }
