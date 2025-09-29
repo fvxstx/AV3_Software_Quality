@@ -4,15 +4,17 @@ import java.time.LocalDateTime;
 
 import jakarta.persistence.*;
 
+import jakarta.persistence.*;
+
 @Entity
 @Table(name = "fridge_items")
 public class FridgeItems {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
     private LocalDateTime validDate;
-    private Long fridgeId;
     private boolean isAvailableForChildren;
     private int quantity;
     private ItemType itemType;
@@ -21,22 +23,15 @@ public class FridgeItems {
     private Fridges fridges;
 
     public FridgeItems(Long id, String name, LocalDateTime validDate, Long fridgeId, boolean isAvailableForChildren, int quantity, ItemType itemType) {
-        this.setId(id);
         this.setName(name);
         this.setValidDate(validDate);
-        this.setFridgeId(fridgeId);
         this.setAvailableForChildren(isAvailableForChildren);
         this.setQuantity(quantity);
         this.setItemType(itemType);
     }
 
-
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -53,14 +48,6 @@ public class FridgeItems {
 
     public void setValidDate(LocalDateTime validDate) {
         this.validDate = validDate;
-    }
-
-    public Long getFridgeId() {
-        return fridgeId;
-    }
-
-    public void setFridgeId(Long fridgeId) {
-        this.fridgeId = fridgeId;
     }
 
     public boolean isAvailableForChildren() {
@@ -85,5 +72,13 @@ public class FridgeItems {
 
     public void setItemType(ItemType itemType) {
         this.itemType = itemType;
+    }
+
+    public Fridges getFridge() {
+        return fridge;
+    }
+
+    public void setFridge(Fridges fridge) {
+        this.fridge = fridge;
     }
 }

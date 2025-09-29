@@ -24,6 +24,7 @@ public class Fridges {
     public Fridges(boolean isOn, String temperature) {
         this.isOn = isOn;
         this.temperature = temperature;
+        this.createdAt = LocalDateTime.now();
     }
 
     public Long getId() {
