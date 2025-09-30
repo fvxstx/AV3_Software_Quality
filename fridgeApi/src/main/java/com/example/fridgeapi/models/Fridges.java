@@ -12,9 +12,11 @@ public class Fridges {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private boolean isOn;
     private String temperature;
     private LocalDateTime createdAt;
+    
     @OneToMany(mappedBy = "fridges", cascade = CascadeType.ALL)
     private List<FridgeItems> fridgeItems;
     

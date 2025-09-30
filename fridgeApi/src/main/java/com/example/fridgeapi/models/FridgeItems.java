@@ -18,6 +18,7 @@ public class FridgeItems {
     private boolean isAvailableForChildren;
     private int quantity;
     private ItemType itemType;
+    
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fridgeId", insertable = false, updatable = false)
     private Fridges fridges;
@@ -75,10 +76,10 @@ public class FridgeItems {
     }
 
     public Fridges getFridge() {
-        return fridge;
+        return fridges;
     }
 
     public void setFridge(Fridges fridge) {
-        this.fridge = fridge;
+        this.fridges = fridge;
     }
 }
