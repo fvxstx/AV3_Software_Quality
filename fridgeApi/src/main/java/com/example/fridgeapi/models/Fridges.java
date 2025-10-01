@@ -17,7 +17,7 @@ public class Fridges {
     private String temperature;
     private LocalDateTime createdAt;
     
-    @OneToMany(mappedBy = "fridges", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "fridge", cascade = CascadeType.ALL)
     private List<FridgeItems> fridgeItems;
     
     public Fridges() {

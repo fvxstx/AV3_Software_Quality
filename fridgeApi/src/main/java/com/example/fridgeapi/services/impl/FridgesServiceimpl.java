@@ -11,10 +11,10 @@ import com.example.fridgeapi.repositories.FridgesRepository;
 import com.example.fridgeapi.services.FridgesService;
 
 @Service
-public class FridgesServicesimpl implements FridgesService {
+public class FridgesServiceimpl implements FridgesService {
     FridgesRepository fridgesRepository;
 
-    public FridgesServicesimpl(FridgesRepository fridgesRepository) {
+    public FridgesServiceimpl(FridgesRepository fridgesRepository) {
         this.fridgesRepository = fridgesRepository;
     }
 
@@ -32,6 +32,7 @@ public class FridgesServicesimpl implements FridgesService {
 
     @Override
     public String updateFridge(Fridges fridges) {
+        fridges.setCreatedAt(LocalDateTime.now());
         fridgesRepository.save(fridges);
         return "Success";
     }
