@@ -1,7 +1,7 @@
 package com.example.fridgeapi.controllers;
 
 import org.springframework.web.bind.annotation.*;
-import java.math.BigInteger;
+
 import java.util.List;
 
 import com.example.fridgeapi.models.Fridges;
@@ -17,7 +17,7 @@ public class FridgesController {
     }
 
     @GetMapping("{fridgeId}")
-    public Fridges getFridgeDetails(@PathVariable("fridgeId") BigInteger fridgeId){
+    public Fridges getFridgeDetails(@PathVariable("fridgeId") Long fridgeId){
         return fridgesService.getFridge(fridgeId);
     }
 
@@ -32,13 +32,13 @@ public class FridgesController {
     }
 
     @PutMapping("{fridgeId}")
-    public String updateFridgeDetails(@PathVariable("fridgeId") BigInteger fridgeId, @RequestBody Fridges fridges) {
+    public String updateFridgeDetails(@PathVariable("fridgeId") Long fridgeId, @RequestBody Fridges fridges) {
         return fridgesService.updateFridge(fridgeId, fridges);
         //(@RequestBody Fridges fridges)
     }
     
     @DeleteMapping("{fridgeId}")
-    public String deleteFridgeDetails(@PathVariable("fridgeId") BigInteger fridgeId ){
+    public String deleteFridgeDetails(@PathVariable("fridgeId") Long fridgeId ){
         return fridgesService.deleteFridge(fridgeId);
     }
 }

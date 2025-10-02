@@ -1,26 +1,25 @@
 package com.example.fridgeapi.services.impl;
 
-import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
 import com.example.fridgeapi.models.Fridges;
-import com.example.fridgeapi.repositories.FridgesRepository;
+import com.example.fridgeapi.repositories.FridgeRepository;
 import com.example.fridgeapi.services.FridgesService;
 
 @Service
 public class FridgesServicesimpl implements FridgesService {
-    FridgesRepository fridgesRepository;
+    FridgeRepository fridgesRepository;
 
-    public FridgesServicesimpl(FridgesRepository fridgesRepository) {
+    public FridgesServicesimpl(FridgeRepository fridgesRepository) {
         this.fridgesRepository = fridgesRepository;
     }
 
     @Override
-    public Fridges getFridge(BigInteger fridgeID) {
-        return fridgesRepository.findById(fridgeID).get();
+    public Fridges getFridge(Long fridgeID) {
+        return fridgesRepository.findById(fridgeID).orElse(null);
     }
 
     @Override
@@ -37,7 +36,7 @@ public class FridgesServicesimpl implements FridgesService {
     }*/
 
     @Override
-    public String updateFridge(BigInteger fridgeId, Fridges fridges) {
+    public String updateFridge(Long fridgeId, Fridges fridges) {
         Fridges existing = fridgesRepository.findById(fridgeId).orElse(null);
         if (existing == null) {
             return "Fridge not found";
@@ -54,7 +53,7 @@ public class FridgesServicesimpl implements FridgesService {
     }
 
     @Override
-    public String deleteFridge(BigInteger fridgeId) {
+    public String deleteFridge(Long fridgeId) {
         fridgesRepository.deleteById(fridgeId);
         return "Success";
     }

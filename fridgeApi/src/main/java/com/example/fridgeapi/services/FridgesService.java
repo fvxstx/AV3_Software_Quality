@@ -1,14 +1,13 @@
 package com.example.fridgeapi.services;
 
-import java.math.BigInteger;
 import java.util.List;
 
 import com.example.fridgeapi.models.Fridges;
 
 public interface FridgesService {
-    public Fridges getFridge(BigInteger fridgeID);
+    public Fridges getFridge(Long fridgeID);
     public String createFridge(Fridges fridges);
-    public String updateFridge(BigInteger fridgeId, Fridges fridges);
-    public String deleteFridge(BigInteger fridgeId);
+    public String updateFridge(Long fridgeId, Fridges fridges);
+    public String deleteFridge(Long fridgeId);
     public List<Fridges> getAllFridges();
 }
