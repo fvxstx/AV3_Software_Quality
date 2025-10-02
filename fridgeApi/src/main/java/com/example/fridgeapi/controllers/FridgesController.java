@@ -17,7 +17,7 @@ public class FridgesController {
     }
 
     @GetMapping("{fridgeId}")
-    public Fridges getFridgeDetails(@PathVariable("fridgeId") BigInteger fridgeId){
+    public Fridges getFridgeDetails(@PathVariable("fridgeId") Long fridgeId){
         return fridgesService.getFridge(fridgeId);
     }
 
@@ -37,7 +37,7 @@ public class FridgesController {
     }
     
     @DeleteMapping("{fridgeId}")
-    public String deleteFridgeDetails(@PathVariable("fridgeId") BigInteger fridgeId ){
+    public String deleteFridgeDetails(@PathVariable("fridgeId") Long fridgeId ){
         return fridgesService.deleteFridge(fridgeId);
     }
 }

@@ -19,7 +19,7 @@ public class FridgesServiceimpl implements FridgesService {
     }
 
     @Override
-    public Fridges getFridge(BigInteger fridgeID) {
+    public Fridges getFridge(Long fridgeID) {
         return fridgesRepository.findById(fridgeID).get();
     }
 
@@ -32,13 +32,12 @@ public class FridgesServiceimpl implements FridgesService {
 
     @Override
     public String updateFridge(Fridges fridges) {
-        fridges.setCreatedAt(LocalDateTime.now());
         fridgesRepository.save(fridges);
         return "Success";
     }
 
     @Override
-    public String deleteFridge(BigInteger fridgeId) {
+    public String deleteFridge(Long fridgeId) {
         fridgesRepository.deleteById(fridgeId);
         return "Success";
     }

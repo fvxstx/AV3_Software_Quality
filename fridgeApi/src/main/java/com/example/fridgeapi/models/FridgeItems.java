@@ -4,8 +4,6 @@ import java.time.LocalDateTime;
 
 import jakarta.persistence.*;
 
-import jakarta.persistence.*;
-
 @Entity
 @Table(name = "fridge_items")
 public class FridgeItems {
@@ -20,11 +18,15 @@ public class FridgeItems {
     private ItemType itemType;
     private LocalDateTime createdAt;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fridgeId", insertable = false, updatable = false)
+    @ManyToOne()
+    @JoinColumn(name = "fridgeId")
     private Fridges fridge;
 
-    public FridgeItems(Long id, String name, LocalDateTime validDate, Long fridgeId, boolean isAvailableForChildren, int quantity, ItemType itemType) {
+    public FridgeItems() {
+
+    }
+
+    public FridgeItems(Long id, String name, LocalDateTime validDate,boolean isAvailableForChildren, int quantity, ItemType itemType) {
         this.setName(name);
         this.setValidDate(validDate);
         this.setAvailableForChildren(isAvailableForChildren);

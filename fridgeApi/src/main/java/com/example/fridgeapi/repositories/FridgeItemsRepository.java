@@ -8,4 +8,5 @@ import com.example.fridgeapi.models.FridgeItems;
 
 public interface FridgeItemsRepository extends JpaRepository<FridgeItems, Long> {
     List<FridgeItems> findByFridgeId(Long fridgeId);
+    
 }
