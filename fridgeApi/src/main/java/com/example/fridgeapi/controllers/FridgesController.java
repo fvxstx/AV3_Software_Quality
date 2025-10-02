@@ -1,7 +1,6 @@
 package com.example.fridgeapi.controllers;
 
 import org.springframework.web.bind.annotation.*;
-import java.math.BigInteger;
 import java.util.List;
 
 import com.example.fridgeapi.models.Fridges;
