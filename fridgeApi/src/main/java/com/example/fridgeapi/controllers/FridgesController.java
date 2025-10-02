@@ -31,9 +31,10 @@ public class FridgesController {
         return fridgesService.createFridge(fridges);
     }
 
-    @PutMapping
-    public String updateFridgeDetails(@RequestBody Fridges fridges){
-        return fridgesService.updateFridge(fridges);
+    @PutMapping("{fridgeId}")
+    public String updateFridgeDetails(@PathVariable("fridgeId") BigInteger fridgeId, @RequestBody Fridges fridges) {
+        return fridgesService.updateFridge(fridgeId, fridges);
+        //(@RequestBody Fridges fridges)
     }
     
     @DeleteMapping("{fridgeId}")

@@ -30,9 +30,22 @@ public class FridgesServicesimpl implements FridgesService {
         return "Success";
     }
 
-    @Override
-    public String updateFridge(Fridges fridges) {
+    /*@Override
+    public String updateFridge(BigInteger fridgeId, Fridges fridges) {
         fridgesRepository.save(fridges);
+        return "Success";
+    }*/
+
+    @Override
+    public String updateFridge(BigInteger fridgeId, Fridges fridges) {
+        Fridges existing = fridgesRepository.findById(fridgeId).orElse(null);
+        if (existing == null) {
+            return "Fridge not found";
+        }
+        existing.setOn(fridges.isOn());
+        existing.setTemperature(fridges.getTemperature());
+        // Atualize outros campos se necessário
+        fridgesRepository.save(existing);
         return "Success";
     }
 

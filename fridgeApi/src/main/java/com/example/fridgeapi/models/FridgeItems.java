@@ -4,8 +4,6 @@ import java.time.LocalDateTime;
 
 import jakarta.persistence.*;
 
-import jakarta.persistence.*;
-
 @Entity
 @Table(name = "fridge_items")
 public class FridgeItems {
