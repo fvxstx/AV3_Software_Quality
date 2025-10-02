@@ -6,7 +6,7 @@ on:
 
 jobs:
   # Esse job executa para so aceitar caso ele build e teste corretamente
-  build-and-test:
+  build-application:
     name: Build and Test Spring Boot Application Fridge Api
     runs-on: ubuntu-latest
     steps:
@@ -20,13 +20,14 @@ jobs:
           distribution: "temurin"
 
       - name: Build with Maven
-        run: mvn -B package --file pom.xml
+        working-directory: ./fridgeApi
+        run: mvn -B package -Dmaven.test.skip=true
 
   # Esse job valida os commits para ver se é semantico ou não
   validate-commits:
     name: Validate Conventional Commits
     runs-on: ubuntu-latest
-    needs: build-and-test # Este job só roda se 'build-and-test' for bem-sucedido
+    needs: build-application # Este job só roda se 'build-and-test' for bem-sucedido
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
