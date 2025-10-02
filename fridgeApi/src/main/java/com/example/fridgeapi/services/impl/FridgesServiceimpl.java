@@ -30,6 +30,7 @@ public class FridgesServiceimpl implements FridgesService {
 
     @Override
     public String updateFridge(Fridges fridges) {
+        fridges.setCreatedAt(LocalDateTime.now());
         fridgesRepository.save(fridges);
         return "Success";
     }
