@@ -1,5 +1,7 @@
 package com.example.fridgeapi.dtos;
 
-public record LoginDto(String email, String password) {
+import java.util.Optional;
+
+public record LoginDto(String email, String password, Optional<String> teste) {
 
 }
