@@ -42,6 +42,10 @@ jobs:
     name: Semantic Versioning
     runs-on: ubuntu-latest
     needs: validate-commits # Este job só roda se a validação de commits passar
+    permissions:
+      contents: write # Permitir criar release and push tags
+      issues: write # Permitir criar issues e falhas
+      pull-requests: write # Permitir comentar commits
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
