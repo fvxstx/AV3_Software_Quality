@@ -4,6 +4,8 @@ package com.example.fridgeapi.models;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -15,7 +17,12 @@ public class Fridges {
 
     private boolean isOn;
     private String temperature;
+    private String roomLocation;
+    
     private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
+    
+    
     
     @OneToMany(mappedBy = "fridges", cascade = CascadeType.ALL)
     private List<FridgeItems> fridgeItems;
@@ -33,6 +40,7 @@ public class Fridges {
         return id;
     }
 
+    @JsonProperty("isOn")
     public boolean isOn() {
         return isOn;
     }
@@ -55,5 +63,21 @@ public class Fridges {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public String getRoomLocation() {
+        return roomLocation;
+    }
+
+    public void setRoomLocation(String roomLocation) {
+        this.roomLocation = roomLocation;
     }
 }

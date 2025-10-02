@@ -44,7 +44,11 @@ public class FridgesServicesimpl implements FridgesService {
         }
         existing.setOn(fridges.isOn());
         existing.setTemperature(fridges.getTemperature());
-        // Atualize outros campos se necessário
+        
+        if (fridges.getRoomLocation() != null) {
+        existing.setRoomLocation(fridges.getRoomLocation());
+    }
+        existing.setUpdatedAt(LocalDateTime.now());
         fridgesRepository.save(existing);
         return "Success";
     }
