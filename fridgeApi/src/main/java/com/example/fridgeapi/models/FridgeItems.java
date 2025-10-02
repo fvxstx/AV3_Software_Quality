@@ -17,9 +17,13 @@ public class FridgeItems {
     private int quantity;
     private ItemType itemType;
     private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
+
+    @Transient 
+    private Long fridgeId;
 
     @ManyToOne()
-    @JoinColumn(name = "fridgeId")
+    @JoinColumn(name = "fridge_id")
     private Fridges fridge;
 
     public FridgeItems() {
@@ -92,5 +96,21 @@ public class FridgeItems {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public Long getFridgeId() {
+        return fridgeId;
+    }
+
+    public void setFridgeId(Long fridgeId) {
+        this.fridgeId = fridgeId;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }

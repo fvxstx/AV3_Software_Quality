@@ -32,6 +32,7 @@ public class FridgeItemsController {
     @PutMapping
     public String updateFridgeItemDetails(@RequestBody FridgeItems fridgeItems){
         return FridgeItemsService.updateFridgeItem(fridgeItems);
+        
     }
     
     @DeleteMapping("{fridgeItemId}")
