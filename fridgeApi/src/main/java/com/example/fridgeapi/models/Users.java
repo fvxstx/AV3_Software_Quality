@@ -1,6 +1,4 @@
 package com.example.fridgeapi.models;
-
-import com.fasterxml.jackson.annotation.JsonAnySetter;
 import jakarta.persistence.*;
 
 import java.io.Serial;

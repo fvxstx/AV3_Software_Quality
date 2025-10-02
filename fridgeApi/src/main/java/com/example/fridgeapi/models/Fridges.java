@@ -24,7 +24,7 @@ public class Fridges {
     
     
     
-    @OneToMany(mappedBy = "fridges", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "fridge", cascade = CascadeType.ALL)
     private List<FridgeItems> fridgeItems;
     
     public Fridges() {

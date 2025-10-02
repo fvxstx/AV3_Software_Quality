@@ -1,5 +1,6 @@
 package com.example.fridgeapi.services;
 
+
 import java.util.List;
 
 import com.example.fridgeapi.models.Fridges;

@@ -6,14 +6,14 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.example.fridgeapi.models.Fridges;
-import com.example.fridgeapi.repositories.FridgeRepository;
+import com.example.fridgeapi.repositories.FridgesRepository;
 import com.example.fridgeapi.services.FridgesService;
 
 @Service
 public class FridgesServicesimpl implements FridgesService {
-    FridgeRepository fridgesRepository;
+    FridgesRepository fridgesRepository;
 
-    public FridgesServicesimpl(FridgeRepository fridgesRepository) {
+    public FridgesServicesimpl(FridgesRepository fridgesRepository) {
         this.fridgesRepository = fridgesRepository;
     }
 
@@ -26,14 +26,8 @@ public class FridgesServicesimpl implements FridgesService {
     public String createFridge(Fridges fridges) {
         fridges.setCreatedAt(LocalDateTime.now());
         fridgesRepository.save(fridges);
-        return "Success";
+        return "Success"; 
     }
-
-    /*@Override
-    public String updateFridge(BigInteger fridgeId, Fridges fridges) {
-        fridgesRepository.save(fridges);
-        return "Success";
-    }*/
 
     @Override
     public String updateFridge(Long fridgeId, Fridges fridges) {

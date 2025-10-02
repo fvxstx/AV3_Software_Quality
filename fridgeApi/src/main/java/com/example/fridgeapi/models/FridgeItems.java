@@ -16,12 +16,17 @@ public class FridgeItems {
     private boolean isAvailableForChildren;
     private int quantity;
     private ItemType itemType;
-    
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fridgeId", insertable = false, updatable = false)
-    private Fridges fridges;
+    private LocalDateTime createdAt;
 
-    public FridgeItems(Long id, String name, LocalDateTime validDate, Long fridgeId, boolean isAvailableForChildren, int quantity, ItemType itemType) {
+    @ManyToOne()
+    @JoinColumn(name = "fridgeId")
+    private Fridges fridge;
+
+    public FridgeItems() {
+
+    }
+
+    public FridgeItems(Long id, String name, LocalDateTime validDate,boolean isAvailableForChildren, int quantity, ItemType itemType) {
         this.setName(name);
         this.setValidDate(validDate);
         this.setAvailableForChildren(isAvailableForChildren);
@@ -74,10 +79,18 @@ public class FridgeItems {
     }
 
     public Fridges getFridge() {
-        return fridges;
+        return fridge;
     }
 
     public void setFridge(Fridges fridge) {
-        this.fridges = fridge;
+        this.fridge = fridge;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 }
