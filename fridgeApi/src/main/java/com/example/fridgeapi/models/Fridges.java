@@ -1,6 +1,8 @@
 package com.example.fridgeapi.models;
 
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -21,9 +23,6 @@ public class Fridges implements Serializable {
     
     @OneToMany(mappedBy = "fridge", cascade = CascadeType.ALL)
     private List<FridgeItems> fridgeItems;
-    
-    public Fridges() {
-    }
 
     public Fridges(boolean isOn, String temperature) {
         this.isOn = isOn;
