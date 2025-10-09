@@ -7,6 +7,4 @@ spring:
     hibernate:
       ddl-auto: update
 
-
-
 #JPA Settings

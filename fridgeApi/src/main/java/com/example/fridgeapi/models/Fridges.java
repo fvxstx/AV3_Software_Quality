@@ -7,8 +7,10 @@ import java.util.List;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "fridges")
-public class Fridges {
+@Table(name = "tb_fridges")
+public class Fridges implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -27,6 +29,9 @@ public class Fridges {
         this.isOn = isOn;
         this.temperature = temperature;
         this.createdAt = LocalDateTime.now();
+    }
+
+    public Fridges() {
     }
 
     public Long getId() {
