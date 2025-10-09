@@ -4,12 +4,9 @@ import com.example.fridgeapi.models.Users;
 import com.example.fridgeapi.repositories.UsersRepository;
 import com.example.fridgeapi.services.UsersService;
 import org.springframework.stereotype.Service;
-
-import javax.swing.text.html.Option;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UsersServiceImpl implements UsersService {

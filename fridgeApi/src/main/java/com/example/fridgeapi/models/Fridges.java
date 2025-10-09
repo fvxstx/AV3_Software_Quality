@@ -1,9 +1,10 @@
 package com.example.fridgeapi.models;
 
-import jakarta.persistence.*;
 
-import java.io.Serial;
-import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.List;
+
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "tb_fridges")
@@ -13,13 +14,21 @@ public class Fridges implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private boolean isOn;
     private String temperature;
+    private LocalDateTime createdAt;
+    
+    @OneToMany(mappedBy = "fridge", cascade = CascadeType.ALL)
+    private List<FridgeItems> fridgeItems;
+    
+    public Fridges() {
+    }
 
-    public Fridges(Long id, boolean isOn, String temperature) {
-        this.id = id;
+    public Fridges(boolean isOn, String temperature) {
         this.isOn = isOn;
         this.temperature = temperature;
+        this.createdAt = LocalDateTime.now();
     }
 
     public Fridges() {
@@ -27,10 +36,6 @@ public class Fridges implements Serializable {
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public boolean isOn() {
@@ -47,5 +52,13 @@ public class Fridges implements Serializable {
 
     public void setTemperature(String temperature) {
         this.temperature = temperature;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 }
