@@ -26,7 +26,7 @@ public class FridgeItems {
 
     }
 
-    public FridgeItems(Long id, String name, LocalDateTime validDate,boolean isAvailableForChildren, int quantity, ItemType itemType) {
+    public FridgeItems(String name, LocalDateTime validDate,boolean isAvailableForChildren, int quantity, ItemType itemType) {
         this.setName(name);
         this.setValidDate(validDate);
         this.setAvailableForChildren(isAvailableForChildren);
