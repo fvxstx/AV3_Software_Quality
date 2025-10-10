@@ -11,8 +11,10 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "tb_fridges")
 public class Fridges implements Serializable {
+
     @Serial
     private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -20,7 +22,7 @@ public class Fridges implements Serializable {
     private boolean isOn;
     private String temperature;
     private LocalDateTime createdAt;
-    
+
     @OneToMany(mappedBy = "fridge", cascade = CascadeType.ALL)
     private List<FridgeItems> fridgeItems;
 
@@ -36,13 +38,14 @@ public class Fridges implements Serializable {
     public Long getId() {
         return id;
     }
+    public void setId(Long id) {this.id = id;}
 
     public boolean isOn() {
         return isOn;
     }
 
-    public void setOn(boolean on) {
-        isOn = on;
+    public void setOn(boolean isOn) {
+        this.isOn = isOn;
     }
 
     public String getTemperature() {
