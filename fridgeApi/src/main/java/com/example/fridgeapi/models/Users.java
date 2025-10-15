@@ -1,6 +1,4 @@
 package com.example.fridgeapi.models;
-
-import com.fasterxml.jackson.annotation.JsonAnySetter;
 import jakarta.persistence.*;
 
 import java.io.Serial;
@@ -22,16 +20,16 @@ public class Users implements Serializable {
     private UserType type;
     private LocalDateTime createdAt;
 
-    public Users(String name, String email, UserType type , String password) {
+    public Users() {
+
+    }
+
+    public Users(String name, String email, UserType type, String password) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.type = type;
         this.createdAt = LocalDateTime.now();
-    }
-
-    public Users() {
-
     }
 
     public Long getId() {

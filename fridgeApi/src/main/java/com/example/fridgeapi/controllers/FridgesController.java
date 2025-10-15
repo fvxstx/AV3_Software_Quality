@@ -1,34 +1,42 @@
 package com.example.fridgeapi.controllers;
 
+import org.springframework.web.bind.annotation.*;
+import java.util.List;
+
 import com.example.fridgeapi.models.Fridges;
 import com.example.fridgeapi.services.FridgesService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/fridges")
 public class FridgesController {
-    private final FridgesService fridgesService;
+    FridgesService fridgesService;
 
     public FridgesController(FridgesService fridgesService) {
         this.fridgesService = fridgesService;
     }
-    @GetMapping
-    public List<Fridges> getFridges() {
-        return fridgesService.findAll();
+
+    @GetMapping("{fridgeId}")
+    public Fridges getFridgeDetails(@PathVariable("fridgeId") Long fridgeId){
+        return fridgesService.getFridge(fridgeId);
     }
-    @GetMapping("/{id}")
-    public Fridges getFridgesById(@PathVariable Long id){
-        return fridgesService.findById(id);
+
+    @GetMapping()
+    public List<Fridges> getAllFridgeDetails(){
+        return fridgesService.getAllFridges();
     }
+    
     @PostMapping
-    public  Fridges addFridge(@RequestBody Fridges fridge){
-        return fridgesService.saveFridge(fridge);
+    public String createFridgeDetails(@RequestBody Fridges fridges){
+        return fridgesService.createFridge(fridges);
     }
-    @DeleteMapping
-    public void deleteFridgeById(@PathVariable Long id){
-        fridgesService.deleteFridge(id);
+
+    @PutMapping
+    public String updateFridgeDetails(@RequestBody Fridges fridges){
+        return fridgesService.updateFridge(fridges);
+    }
+    
+    @DeleteMapping("{fridgeId}")
+    public String deleteFridgeDetails(@PathVariable("fridgeId") Long fridgeId ){
+        return fridgesService.deleteFridge(fridgeId);
     }
 }
