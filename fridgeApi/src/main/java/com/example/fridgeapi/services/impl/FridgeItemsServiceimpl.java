@@ -38,7 +38,7 @@ public class FridgeItemsServiceimpl implements FridgeItemsService {
         if (fridgeItems.getFridge().getId() == null) {
             throw new ResponseStatusException(
                     HttpStatus.BAD_REQUEST, // Código HTTP 400
-                    "O ID da Geladeira (fridge.id) é obrigatório para criar um item."
+                    "O ID da Geladeirasss (fridge.id) é obrigatório para criar um item."
             );
         }
 
