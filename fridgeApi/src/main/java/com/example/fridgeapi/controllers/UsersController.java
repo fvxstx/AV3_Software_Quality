@@ -6,7 +6,7 @@ import com.example.fridgeapi.services.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigInteger;
+//import java.math.BigInteger;
 import java.util.List;
 
 @RestController
@@ -21,7 +21,7 @@ public class UsersController {
     }
 
 @GetMapping("{userId}")
-    public Users getUserDetails(@PathVariable("userId") BigInteger userId){
+    public Users getUserDetails(@PathVariable("userId") Long userId){
         return usersService.getUser(userId);
     }
 
@@ -45,7 +45,7 @@ public class UsersController {
     }
 
     @DeleteMapping("{userId}")
-    public String deleteUserDetails(@PathVariable("userId") BigInteger userId){
+    public String deleteUserDetails(@PathVariable("userId") Long userId){
         return usersService.deleteUser(userId);
     }
 }

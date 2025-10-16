@@ -1,5 +1,6 @@
 package com.example.fridgeapi.services.impl;
 
+import com.example.fridgeapi.models.FridgeItems;
 import com.example.fridgeapi.models.Users;
 import com.example.fridgeapi.repositories.UsersRepository;
 import com.example.fridgeapi.services.UsersService;
@@ -26,18 +27,23 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public String updateUser(Users user) {
+
+        Users existingUser = usersRepository.findById(user.getId()).get();
+        LocalDateTime originalCreationDate = existingUser.getCreatedAt();
+        user.setCreatedAt(originalCreationDate);
+
         usersRepository.save(user);
         return "Success";
     }
 
     @Override
-    public String deleteUser(BigInteger userId) {
+    public String deleteUser(Long userId) {
         usersRepository.deleteById(userId);
         return "Success";
     }
 
     @Override
-    public Users getUser(BigInteger userId) {
+    public Users getUser(Long userId) {
         return usersRepository.findById(userId).get();
     }
 

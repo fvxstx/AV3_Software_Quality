@@ -2,7 +2,8 @@ package com.example.fridgeapi.services.impl;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.beans.factory.annotation.Autowired;
+import com.example.fridgeapi.models.Users;
 import org.springframework.stereotype.Service;
 
 import com.example.fridgeapi.models.Fridges;
@@ -31,7 +32,11 @@ public class FridgesServiceimpl implements FridgesService {
 
     @Override
     public String updateFridge(Fridges fridges) {
-        fridges.setCreatedAt(LocalDateTime.now()); 
+
+        Fridges existingFridge = fridgesRepository.findById(fridges.getId()).get();
+        LocalDateTime originalCreationDate = existingFridge.getCreatedAt();
+        fridges.setCreatedAt(originalCreationDate);
+
         fridgesRepository.save(fridges);
         return "Success";
     }
