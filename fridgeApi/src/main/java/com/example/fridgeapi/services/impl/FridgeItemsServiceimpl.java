@@ -1,10 +1,12 @@
 package com.example.fridgeapi.services.impl;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.example.fridgeapi.models.FridgeItems;
 import com.example.fridgeapi.repositories.FridgeItemsRepository;
 import com.example.fridgeapi.services.FridgeItemsService;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -25,6 +27,21 @@ public class FridgeItemsServiceimpl implements FridgeItemsService {
 
     @Override
     public String createFridgeItem(FridgeItems fridgeItems) {
+
+        if (fridgeItems.getFridge() == null) {
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST, // Código HTTP 400
+                    "A propriedade 'fridge' deve ser incluída na requisição para associar o item."
+            );
+        }
+
+        if (fridgeItems.getFridge().getId() == null) {
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST, // Código HTTP 400
+                    "O ID da Geladeira (fridge.id) é obrigatório para criar um item."
+            );
+        }
+
         fridgeItems.setCreatedAt(LocalDateTime.now());
         fridgeItemsRepository.save(fridgeItems);
         return "Success";
