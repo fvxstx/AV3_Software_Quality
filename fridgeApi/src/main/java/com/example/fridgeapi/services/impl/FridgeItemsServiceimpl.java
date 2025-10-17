@@ -30,15 +30,7 @@ public class FridgeItemsServiceimpl implements FridgeItemsService {
 
         if (fridgeItems.getFridge() == null) {
             throw new ResponseStatusException(
-                    HttpStatus.BAD_REQUEST, // Código HTTP 400
-                    "A propriedade 'fridge' deve ser incluída na requisição para associar o item."
-            );
-        }
-
-        if (fridgeItems.getFridge().getId() == null) {
-            throw new ResponseStatusException(
-                    HttpStatus.BAD_REQUEST, // Código HTTP 400
-                    "O ID da Geladeirasss (fridge.id) é obrigatório para criar um item."
+                    HttpStatus.BAD_REQUEST
             );
         }
 
@@ -53,6 +45,12 @@ public class FridgeItemsServiceimpl implements FridgeItemsService {
         FridgeItems existingItem = fridgeItemsRepository.findById(fridgeItems.getId()).get();
         LocalDateTime originalCreationDate = existingItem.getCreatedAt();
         fridgeItems.setCreatedAt(originalCreationDate);
+
+        if (fridgeItems.getFridge() == null) {
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST
+            );
+        }
 
         fridgeItemsRepository.save(fridgeItems);
         return "Success";
