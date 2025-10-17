@@ -25,19 +25,24 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public String updateUser(Users user) {
-        usersRepository.save(user);
-        return "Success";
+    public Users updateUser(Long id, Users user) {
+        Users existingUser = usersRepository.findById(id).get();
+        existingUser.setName(user.getName());
+        existingUser.setEmail(user.getEmail());
+        existingUser.setPassword(user.getPassword());
+        existingUser.setType(user.getType());
+        return usersRepository.save(existingUser);
+//        return "Success";
     }
 
     @Override
-    public String deleteUser(BigInteger userId) {
+    public String deleteUser(Long userId) {
         usersRepository.deleteById(userId);
         return "Success";
     }
 
     @Override
-    public Users getUser(BigInteger userId) {
+    public Users getUser(Long userId) {
         return usersRepository.findById(userId).get();
     }
 

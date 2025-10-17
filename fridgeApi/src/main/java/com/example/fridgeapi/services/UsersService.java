@@ -9,9 +9,9 @@ import java.util.List;
 @Service
 public interface UsersService {
     public String createUser(Users user);
-    public String updateUser(Users user);
-    public String deleteUser(BigInteger userId);
-    public Users getUser(BigInteger userId);
+    public Users updateUser(Long id, Users user);
+    public String deleteUser(Long userId);
+    public Users getUser(Long userId);
     public List<Users> getAllUsers();
     public String loginUser(String email, String password);
 }

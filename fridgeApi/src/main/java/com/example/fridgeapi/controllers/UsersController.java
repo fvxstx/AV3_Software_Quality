@@ -3,7 +3,9 @@ package com.example.fridgeapi.controllers;
 import com.example.fridgeapi.dtos.LoginDto;
 import com.example.fridgeapi.models.Users;
 import com.example.fridgeapi.services.UsersService;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigInteger;
@@ -21,13 +23,15 @@ public class UsersController {
     }
 
 @GetMapping("{userId}")
-    public Users getUserDetails(@PathVariable("userId") BigInteger userId){
-        return usersService.getUser(userId);
+    public ResponseEntity<Users> getUserDetails(@PathVariable("userId") Long userId){
+        Users user = usersService.getUser(userId);
+        return ResponseEntity.ok().body(user);
     }
 
     @GetMapping()
-    public List<Users> getAllUserDetails(){
-        return usersService.getAllUsers();
+    public ResponseEntity<List<Users>> getAllUserDetails(){
+        List<Users> listUsers= usersService.getAllUsers();
+        return ResponseEntity.ok().body(listUsers);
     }
 
     @PostMapping("/login")
@@ -39,13 +43,15 @@ public class UsersController {
         return usersService.createUser(users);
     }
 
-    @PutMapping
-    public String updateUserDetails(@RequestBody Users users){
-        return usersService.updateUser(users);
+    @PutMapping("/{id}")
+    public ResponseEntity<Users> updateUserDetails(@PathVariable Long id, @RequestBody Users users){
+        Users updateUser = usersService.updateUser(id, users);
+        return ResponseEntity.ok((updateUser));
     }
 
     @DeleteMapping("{userId}")
-    public String deleteUserDetails(@PathVariable("userId") BigInteger userId){
-        return usersService.deleteUser(userId);
+    public ResponseEntity<String> deleteUserDetails(@PathVariable("userId") Long userId){
+        usersService.deleteUser(userId);
+        return ResponseEntity.noContent().build();
     }
 }
