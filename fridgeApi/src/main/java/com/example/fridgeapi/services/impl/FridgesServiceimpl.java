@@ -2,7 +2,8 @@ package com.example.fridgeapi.services.impl;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import com.example.fridgeapi.models.Users;
 import org.springframework.stereotype.Service;
 
 import com.example.fridgeapi.models.Fridges;
