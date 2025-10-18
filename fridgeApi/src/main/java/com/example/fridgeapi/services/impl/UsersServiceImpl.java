@@ -26,14 +26,14 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public String updateUser(Users user) {
-
-        Users existingUser = usersRepository.findById(user.getId()).get();
-        LocalDateTime originalCreationDate = existingUser.getCreatedAt();
-        user.setCreatedAt(originalCreationDate);
-
-        usersRepository.save(user);
-        return "Success";
+    public Users updateUser(Long id, Users user) {
+        Users existingUser = usersRepository.findById(id).get();
+        existingUser.setName(user.getName());
+        existingUser.setEmail(user.getEmail());
+        existingUser.setPassword(user.getPassword());
+        existingUser.setType(user.getType());
+        return usersRepository.save(existingUser);
+//        return "Success";
     }
 
     @Override

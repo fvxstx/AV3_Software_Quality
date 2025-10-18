@@ -2,7 +2,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/fridgestorage?useSSL=false
     username: root
-    password: 'R1D2Ms$3!'
+    password: 'Admin@123'
   jpa:
     hibernate:
       ddl-auto: update

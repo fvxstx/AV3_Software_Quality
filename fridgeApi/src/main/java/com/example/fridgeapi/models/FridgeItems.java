@@ -20,7 +20,6 @@ public class FridgeItems {
 
     @ManyToOne()
     @JoinColumn(name = "fridgeId")
-    //@JoinColumn(name = "fridge_id")
     private Fridges fridge;
 
     public FridgeItems() {
