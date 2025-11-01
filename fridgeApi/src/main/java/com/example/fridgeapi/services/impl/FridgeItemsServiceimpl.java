@@ -1,8 +1,11 @@
 package com.example.fridgeapi.services.impl;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.example.fridgeapi.models.FridgeItems;
+import com.example.fridgeapi.models.Fridges;
 import com.example.fridgeapi.repositories.FridgeItemsRepository;
 import com.example.fridgeapi.services.FridgeItemsService;
 
@@ -25,6 +28,13 @@ public class FridgeItemsServiceimpl implements FridgeItemsService {
 
     @Override
     public String createFridgeItem(FridgeItems fridgeItems) {
+
+        if (fridgeItems.getFridge() == null) {
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST
+            );
+        }
+        
         fridgeItems.setCreatedAt(LocalDateTime.now());
         fridgeItemsRepository.save(fridgeItems);
         return "Success";
@@ -32,7 +42,11 @@ public class FridgeItemsServiceimpl implements FridgeItemsService {
 
     @Override
     public String updateFridgeItem(FridgeItems fridgeItems) {
-        fridgeItems.setCreatedAt(LocalDateTime.now());
+        
+        FridgeItems existingItem = fridgeItemsRepository.findById(fridgeItems.getId()).get();
+        LocalDateTime originalCreationDate = existingItem.getCreatedAt();
+        fridgeItems.setCreatedAt(originalCreationDate);
+
         fridgeItemsRepository.save(fridgeItems);
         return "Success";
     }
