@@ -4,20 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="474c4bfe-1eff-4247-8d9e-5ccc944a2ff5" name="Changes" comment="">
+    <list default="true" id="474c4bfe-1eff-4247-8d9e-5ccc944a2ff5" name="Changes" comment="feat: add integration test for user controller">
+      <change afterPath="$PROJECT_DIR$/fridgeApi/src/main/java/com/example/fridgeapi/exceptions/GlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fridgeApi/src/main/resources/application-test.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fridgeApi/src/test/java/com/example/fridgeapi/controllers/UsersControllerIntegrationTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fridgeApi/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/fridgeApi/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fridgeApi/src/main/java/com/example/fridgeapi/controllers/FridgesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/fridgeApi/src/main/java/com/example/fridgeapi/controllers/FridgesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fridgeApi/src/main/java/com/example/fridgeapi/controllers/UsersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/fridgeApi/src/main/java/com/example/fridgeapi/controllers/UsersController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fridgeApi/src/main/java/com/example/fridgeapi/models/FridgeItems.java" beforeDir="false" afterPath="$PROJECT_DIR$/fridgeApi/src/main/java/com/example/fridgeapi/models/FridgeItems.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fridgeApi/src/main/java/com/example/fridgeapi/services/FridgesService.java" beforeDir="false" afterPath="$PROJECT_DIR$/fridgeApi/src/main/java/com/example/fridgeapi/services/FridgesService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fridgeApi/src/main/java/com/example/fridgeapi/services/UsersService.java" beforeDir="false" afterPath="$PROJECT_DIR$/fridgeApi/src/main/java/com/example/fridgeapi/services/UsersService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fridgeApi/src/main/java/com/example/fridgeapi/services/impl/FridgesServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/fridgeApi/src/main/java/com/example/fridgeapi/services/impl/FridgesServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fridgeApi/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/fridgeApi/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fridgeApi/target/classes/com/example/fridgeapi/FridgeApiApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/fridgeApi/target/classes/com/example/fridgeapi/FridgeApiApplication.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fridgeApi/target/classes/com/example/fridgeapi/controllers/UsersController.class" beforeDir="false" afterPath="$PROJECT_DIR$/fridgeApi/target/classes/com/example/fridgeapi/controllers/UsersController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fridgeApi/target/classes/com/example/fridgeapi/models/FridgeItems.class" beforeDir="false" afterPath="$PROJECT_DIR$/fridgeApi/target/classes/com/example/fridgeapi/models/FridgeItems.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fridgeApi/target/classes/com/example/fridgeapi/models/Fridges.class" beforeDir="false" afterPath="$PROJECT_DIR$/fridgeApi/target/classes/com/example/fridgeapi/models/Fridges.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fridgeApi/target/classes/com/example/fridgeapi/models/ItemType.class" beforeDir="false" afterPath="$PROJECT_DIR$/fridgeApi/target/classes/com/example/fridgeapi/models/ItemType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fridgeApi/target/classes/com/example/fridgeapi/models/UserType.class" beforeDir="false" afterPath="$PROJECT_DIR$/fridgeApi/target/classes/com/example/fridgeapi/models/UserType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fridgeApi/target/classes/com/example/fridgeapi/models/Users.class" beforeDir="false" afterPath="$PROJECT_DIR$/fridgeApi/target/classes/com/example/fridgeapi/models/Users.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fridgeApi/target/classes/com/example/fridgeapi/repositories/UsersRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/fridgeApi/target/classes/com/example/fridgeapi/repositories/UsersRepository.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fridgeApi/target/classes/com/example/fridgeapi/services/UsersService.class" beforeDir="false" afterPath="$PROJECT_DIR$/fridgeApi/target/classes/com/example/fridgeapi/services/UsersService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fridgeApi/target/classes/com/example/fridgeapi/services/impl/UsersServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/fridgeApi/target/classes/com/example/fridgeapi/services/impl/UsersServiceImpl.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,8 +30,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -39,27 +42,35 @@
   &quot;associatedIndex&quot;: 8
 }</component>
   <component name="ProjectId" id="32D7DFTT734S6jygsOHxFBB2aY0" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.FridgeApiApplication.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;vini3&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/Vini/faculdade/Gestão e qualidade A3/AV3_Software_Quality/model/src/Main.java&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.FridgeApiApplication.executor": "Run",
+    "JUnit.UsersControllerIntegrationTest.deleteUserDetails_ShouldRemoveUser.executor": "Run",
+    "JUnit.UsersControllerIntegrationTest.executor": "Run",
+    "JUnit.UsersServiceImplTest.executor": "Run",
+    "JUnit.UsersServiceImplTest.testDeleteUser.executor": "Run",
+    "JUnit.UsersServiceImplTest.testLoginUser_Success.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "fausto",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "onboarding.tips.debug.path": "C:/Users/Vini/faculdade/Gestão e qualidade A3/AV3_Software_Quality/model/src/Main.java",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Vini\faculdade\Gestão e qualidade A3\AV3_Software_Quality\model\src\application" />
@@ -68,22 +79,91 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="FridgeApiApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.fridgeapi.FridgeApiApplication" />
+    <configuration name="UsersControllerIntegrationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="fridgeApi" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.example.fridgeapi.*" />
+          <option name="PATTERN" value="com.example.fridgeapi.controllers.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="com.example.fridgeapi.controllers" />
+      <option name="MAIN_CLASS_NAME" value="com.example.fridgeapi.controllers.UsersControllerIntegrationTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UsersControllerIntegrationTest.deleteUserDetails_ShouldRemoveUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="fridgeApi" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.fridgeapi.controllers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.fridgeapi.controllers" />
+      <option name="MAIN_CLASS_NAME" value="com.example.fridgeapi.controllers.UsersControllerIntegrationTest" />
+      <option name="METHOD_NAME" value="deleteUserDetails_ShouldRemoveUser" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UsersServiceImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="fridgeApi" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.fridgeapi.services.impl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.fridgeapi.services.impl" />
+      <option name="MAIN_CLASS_NAME" value="com.example.fridgeapi.services.impl.UsersServiceImplTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UsersServiceImplTest.testDeleteUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="fridgeApi" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.fridgeapi.services.impl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.fridgeapi.services.impl" />
+      <option name="MAIN_CLASS_NAME" value="com.example.fridgeapi.services.impl.UsersServiceImplTest" />
+      <option name="METHOD_NAME" value="testDeleteUser" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UsersServiceImplTest.testLoginUser_Success" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="fridgeApi" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.fridgeapi.services.impl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.fridgeapi.services.impl" />
+      <option name="MAIN_CLASS_NAME" value="com.example.fridgeapi.services.impl.UsersServiceImplTest" />
+      <option name="METHOD_NAME" value="testLoginUser_Success" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.FridgeApiApplication" />
+        <item itemvalue="JUnit.UsersControllerIntegrationTest" />
+        <item itemvalue="JUnit.UsersControllerIntegrationTest.deleteUserDetails_ShouldRemoveUser" />
+        <item itemvalue="JUnit.UsersServiceImplTest" />
+        <item itemvalue="JUnit.UsersServiceImplTest.testLoginUser_Success" />
+        <item itemvalue="JUnit.UsersServiceImplTest.testDeleteUser" />
       </list>
     </recent_temporary>
   </component>
@@ -102,7 +182,32 @@
       <option name="presentableId" value="Default" />
       <updated>1756943167919</updated>
     </task>
+    <task id="LOCAL-00001" summary="feat: add unit test for users">
+      <option name="closed" value="true" />
+      <created>1760498014656</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1760498014657</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="feat: add unit test for users" />
+    <MESSAGE value="feat: add integration test for user controller" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: add integration test for user controller" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -111,6 +216,33 @@
           <url>file://$PROJECT_DIR$/model/src/application/Main.java</url>
           <line>4</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/fridgeApi/src/main/java/com/example/fridgeapi/controllers/FridgesController.java</url>
+          <line>28</line>
+          <properties class="com.example.fridgeapi.controllers.FridgesController" method="createFridgeDetails">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/fridgeApi/src/main/java/com/example/fridgeapi/controllers/FridgeItemsController.java</url>
+          <line>27</line>
+          <properties class="com.example.fridgeapi.controllers.FridgeItemsController" method="createFridgeItemDetails">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/fridgeApi/src/main/java/com/example/fridgeapi/controllers/FridgeItemsController.java</url>
+          <line>17</line>
+          <properties class="com.example.fridgeapi.controllers.FridgeItemsController" method="getFridgeItemDetails">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
