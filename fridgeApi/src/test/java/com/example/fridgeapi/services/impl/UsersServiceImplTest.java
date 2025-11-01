@@ -8,7 +8,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import java.math.BigInteger;
+import java.lang.Long;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -48,20 +48,20 @@ public class UsersServiceImplTest {
 
     @Test
     public void UsersServiceImpl_getUser_ReturnsUser() {
-        when(usersRepository.findById(any(BigInteger.class))).thenReturn(Optional.of(user));
+        when(usersRepository.findById(any(Long.class))).thenReturn(Optional.of(user));
 
-        Users foundUser = usersService.getUser(BigInteger.valueOf(1));
+        Users foundUser = usersService.getUser(Long.valueOf(1));
 
         assertEquals(user.getName(), foundUser.getName());
-        verify(usersRepository, times(1)).findById(BigInteger.valueOf(1));
+        verify(usersRepository, times(1)).findById(Long.valueOf(1));
     }
 
     @Test
     public void UsersServiceImpl_getUser_ThrowsExceptionWhenUserNotFound() {
-        when(usersRepository.findById(any(BigInteger.class))).thenReturn(Optional.empty());
+        when(usersRepository.findById(any(Long.class))).thenReturn(Optional.empty());
 
-        assertThrows(java.util.NoSuchElementException.class, () -> usersService.getUser(BigInteger.valueOf(1)));
-        verify(usersRepository, times(1)).findById(BigInteger.valueOf(1));
+        assertThrows(java.util.NoSuchElementException.class, () -> usersService.getUser(Long.valueOf(1)));
+        verify(usersRepository, times(1)).findById(Long.valueOf(1));
     }
 
     @Test
@@ -81,12 +81,12 @@ public class UsersServiceImplTest {
 
     @Test
     public void UsersServiceImpl_deleteUser_ReturnsSuccess() {
-        doNothing().when(usersRepository).deleteById(any(BigInteger.class));
+        doNothing().when(usersRepository).deleteById(any(Long.class));
 
-        String result = usersService.deleteUser(BigInteger.valueOf(1));
+        String result = usersService.deleteUser(Long.valueOf(1));
 
         assertEquals("Success", result);
-        verify(usersRepository, times(1)).deleteById(BigInteger.valueOf(1));
+        verify(usersRepository, times(1)).deleteById(Long.valueOf(1));
     }
 
     @Test
