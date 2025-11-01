@@ -5,22 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="474c4bfe-1eff-4247-8d9e-5ccc944a2ff5" name="Changes" comment="feat: add integration test for user controller">
-      <change afterPath="$PROJECT_DIR$/fridgeApi/src/main/java/com/example/fridgeapi/exceptions/GlobalExceptionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fridgeApi/src/main/resources/application-test.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fridgeApi/src/test/java/com/example/fridgeapi/controllers/UsersControllerIntegrationTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fridgeApi/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/fridgeApi/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fridgeApi/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/fridgeApi/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fridgeApi/target/classes/com/example/fridgeapi/FridgeApiApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/fridgeApi/target/classes/com/example/fridgeapi/FridgeApiApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fridgeApi/target/classes/com/example/fridgeapi/controllers/UsersController.class" beforeDir="false" afterPath="$PROJECT_DIR$/fridgeApi/target/classes/com/example/fridgeapi/controllers/UsersController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fridgeApi/target/classes/com/example/fridgeapi/models/FridgeItems.class" beforeDir="false" afterPath="$PROJECT_DIR$/fridgeApi/target/classes/com/example/fridgeapi/models/FridgeItems.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fridgeApi/target/classes/com/example/fridgeapi/models/Fridges.class" beforeDir="false" afterPath="$PROJECT_DIR$/fridgeApi/target/classes/com/example/fridgeapi/models/Fridges.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fridgeApi/target/classes/com/example/fridgeapi/models/ItemType.class" beforeDir="false" afterPath="$PROJECT_DIR$/fridgeApi/target/classes/com/example/fridgeapi/models/ItemType.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fridgeApi/target/classes/com/example/fridgeapi/models/UserType.class" beforeDir="false" afterPath="$PROJECT_DIR$/fridgeApi/target/classes/com/example/fridgeapi/models/UserType.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fridgeApi/target/classes/com/example/fridgeapi/models/Users.class" beforeDir="false" afterPath="$PROJECT_DIR$/fridgeApi/target/classes/com/example/fridgeapi/models/Users.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fridgeApi/target/classes/com/example/fridgeapi/repositories/UsersRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/fridgeApi/target/classes/com/example/fridgeapi/repositories/UsersRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fridgeApi/target/classes/com/example/fridgeapi/services/UsersService.class" beforeDir="false" afterPath="$PROJECT_DIR$/fridgeApi/target/classes/com/example/fridgeapi/services/UsersService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fridgeApi/target/classes/com/example/fridgeapi/services/impl/UsersServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/fridgeApi/target/classes/com/example/fridgeapi/services/impl/UsersServiceImpl.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +65,7 @@
       <recent name="C:\Users\Vini\faculdade\Gestão e qualidade A3\AV3_Software_Quality\model\src\model.entities" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.UsersControllerIntegrationTest">
     <configuration name="UsersControllerIntegrationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="fridgeApi" />
       <extension name="coverage">
