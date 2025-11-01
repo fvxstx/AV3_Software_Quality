@@ -9,7 +9,7 @@ import java.util.List;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "fridges")
+@Table(name = "tb_fridges")
 public class Fridges implements Serializable {
 
     @Serial
