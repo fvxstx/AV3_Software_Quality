@@ -1,6 +1,7 @@
 package com.example.fridgeapi.services.impl;
 
 import com.example.fridgeapi.models.FridgeItems;
+import com.example.fridgeapi.models.Fridges;
 import com.example.fridgeapi.repositories.FridgeItemsRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -72,6 +73,10 @@ class FridgeItemsServiceimplTest {
         FridgeItems newItem = new FridgeItems();
         newItem.setName("Cheese");
 
+        Fridges fridge = new Fridges();
+        fridge.setId(1L);
+        newItem.setFridge(fridge);
+
         ArgumentCaptor<FridgeItems> itemCaptor = ArgumentCaptor.forClass(FridgeItems.class);
 
         when(fridgeItemsRepository.save(itemCaptor.capture())).thenReturn(mockFridgeItem);
@@ -95,6 +100,7 @@ class FridgeItemsServiceimplTest {
 
         ArgumentCaptor<FridgeItems> itemCaptor = ArgumentCaptor.forClass(FridgeItems.class);
 
+        when(fridgeItemsRepository.findById(mockFridgeItem.getId())).thenReturn(Optional.of(mockFridgeItem));
         when(fridgeItemsRepository.save(itemCaptor.capture())).thenReturn(mockFridgeItem);
 
         String result = fridgeItemsService.updateFridgeItem(mockFridgeItem);
@@ -103,9 +109,9 @@ class FridgeItemsServiceimplTest {
 
         FridgeItems updatedItem = itemCaptor.getValue();
 
-        assertTrue(updatedItem.getCreatedAt().isAfter(LocalDateTime.now().minusSeconds(5)));
+        assertEquals(mockFridgeItem.getCreatedAt(), updatedItem.getCreatedAt());
         assertEquals("Fresh Milk", updatedItem.getName());
-
+        verify(fridgeItemsRepository, times(1)).findById(mockFridgeItem.getId());
         verify(fridgeItemsRepository, times(1)).save(mockFridgeItem);
     }
 
