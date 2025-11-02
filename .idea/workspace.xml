@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="474c4bfe-1eff-4247-8d9e-5ccc944a2ff5" name="Changes" comment="feat: add integration test for user controller">
+    <list default="true" id="474c4bfe-1eff-4247-8d9e-5ccc944a2ff5" name="Changes" comment="chore: add test verification and pull request">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fridgeApi/src/test/java/com/example/fridgeapi/controllers/UsersControllerIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/fridgeApi/src/test/java/com/example/fridgeapi/controllers/UsersControllerIntegrationTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fridgeApi/target/classes/com/example/fridgeapi/models/ItemType.class" beforeDir="false" afterPath="$PROJECT_DIR$/fridgeApi/target/classes/com/example/fridgeapi/models/ItemType.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fridgeApi/target/classes/com/example/fridgeapi/models/UserType.class" beforeDir="false" afterPath="$PROJECT_DIR$/fridgeApi/target/classes/com/example/fridgeapi/models/UserType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fridgeApi/target/classes/com/example/fridgeapi/services/impl/UsersServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/fridgeApi/target/classes/com/example/fridgeapi/services/impl/UsersServiceImpl.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +41,8 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.FridgeApiApplication.executor": "Run",
-    "JUnit.UsersControllerIntegrationTest.deleteUserDetails_ShouldRemoveUser.executor": "Run",
+    "JUnit.UserRepositoriesTest.executor": "Run",
+    "JUnit.UsersControllerIntegrationTest.deleteUserDetails_ShouldRemoveUser.executor": "Debug",
     "JUnit.UsersControllerIntegrationTest.executor": "Run",
     "JUnit.UsersServiceImplTest.executor": "Run",
     "JUnit.UsersServiceImplTest.testDeleteUser.executor": "Run",
@@ -64,7 +68,22 @@
       <recent name="C:\Users\Vini\faculdade\Gestão e qualidade A3\AV3_Software_Quality\model\src\model.entities" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.UsersControllerIntegrationTest">
+  <component name="RunManager" selected="JUnit.UsersControllerIntegrationTest.deleteUserDetails_ShouldRemoveUser">
+    <configuration name="UserRepositoriesTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="fridgeApi" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.fridgeapi.repositories.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.fridgeapi.repositories" />
+      <option name="MAIN_CLASS_NAME" value="com.example.fridgeapi.repositories.UserRepositoriesTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="UsersControllerIntegrationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="fridgeApi" />
       <extension name="coverage">
@@ -111,22 +130,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UsersServiceImplTest.testDeleteUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="fridgeApi" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.fridgeapi.services.impl.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.example.fridgeapi.services.impl" />
-      <option name="MAIN_CLASS_NAME" value="com.example.fridgeapi.services.impl.UsersServiceImplTest" />
-      <option name="METHOD_NAME" value="testDeleteUser" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="UsersServiceImplTest.testLoginUser_Success" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="fridgeApi" />
       <extension name="coverage">
@@ -145,11 +148,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.UsersControllerIntegrationTest" />
         <item itemvalue="JUnit.UsersControllerIntegrationTest.deleteUserDetails_ShouldRemoveUser" />
+        <item itemvalue="JUnit.UsersControllerIntegrationTest" />
+        <item itemvalue="JUnit.UserRepositoriesTest" />
         <item itemvalue="JUnit.UsersServiceImplTest" />
         <item itemvalue="JUnit.UsersServiceImplTest.testLoginUser_Success" />
-        <item itemvalue="JUnit.UsersServiceImplTest.testDeleteUser" />
       </list>
     </recent_temporary>
   </component>
@@ -176,7 +179,15 @@
       <option name="project" value="LOCAL" />
       <updated>1760498014657</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="chore: add test verification and pull request">
+      <option name="closed" value="true" />
+      <created>1762048740510</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1762048740510</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -193,7 +204,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feat: add unit test for users" />
     <MESSAGE value="feat: add integration test for user controller" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: add integration test for user controller" />
+    <MESSAGE value="chore: add test verification and pull request" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: add test verification and pull request" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -202,6 +214,11 @@
           <url>file://$PROJECT_DIR$/model/src/application/Main.java</url>
           <line>4</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/fridgeApi/src/test/java/com/example/fridgeapi/controllers/UsersControllerIntegrationTest.java</url>
+          <line>90</line>
+          <option name="timeStamp" value="18" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/fridgeApi/src/main/java/com/example/fridgeapi/controllers/FridgesController.java</url>
@@ -229,6 +246,15 @@
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/fridgeApi/src/test/java/com/example/fridgeapi/controllers/UsersControllerIntegrationTest.java</url>
+          <line>88</line>
+          <properties class="com.example.fridgeapi.controllers.UsersControllerIntegrationTest" method="deleteUserDetails_ShouldRemoveUser">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="20" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
