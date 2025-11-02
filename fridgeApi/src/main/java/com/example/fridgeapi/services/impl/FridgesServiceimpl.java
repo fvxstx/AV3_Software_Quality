@@ -32,7 +32,11 @@ public class FridgesServiceimpl implements FridgesService {
 
     @Override
     public String updateFridge(Fridges fridges) {
-        fridges.setCreatedAt(LocalDateTime.now()); 
+        
+        Fridges existingFridge = fridgesRepository.findById(fridges.getId()).get();
+        LocalDateTime originalCreationDate = existingFridge.getCreatedAt();
+        fridges.setCreatedAt(originalCreationDate);
+        
         fridgesRepository.save(fridges);
         return "Success";
     }

@@ -8,6 +8,6 @@ public class FridgeApiApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(FridgeApiApplication.class, args);
-        System.out.println("Fridge API is running...");
+        System.out.println("Fridge API is running....");
     }
 }
