@@ -88,6 +88,7 @@ class FridgesServiceimplTest {
     @Test
     void testUpdateFridge_ShouldSaveAndReturnSuccess() {
 
+        when(fridgesRepository.findById(1L)).thenReturn(Optional.of(mockFridge));
         when(fridgesRepository.save(any(Fridges.class))).thenReturn(mockFridge);
 
         String result = fridgesService.updateFridge(mockFridge);
