@@ -50,7 +50,6 @@ Curso de **Ciência da Computação**
 ---
 
 ## 🧱 Tecnologias Utilizadas (opcional)
-> *Este trecho pode ser ajustado conforme a implementação do projeto.*
 
 - Linguagem: Java
 - Banco de Dados: MySQL
