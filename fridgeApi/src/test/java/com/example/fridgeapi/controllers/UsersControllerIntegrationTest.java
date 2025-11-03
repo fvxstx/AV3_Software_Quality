@@ -99,9 +99,7 @@ class UsersControllerIntegrationTest {
 
         // 2. Act
         mockMvc.perform(delete("/users/{userId}", userIdToDelete))
-                .andExpect(status().isOk())
-                .andExpect(content().string("Success"));
-
+                .andExpect(status().isNoContent());
         // 3. Assert
         mockMvc.perform(get("/users/{userId}", userIdToDelete))
                 .andExpect(status().isNotFound());
