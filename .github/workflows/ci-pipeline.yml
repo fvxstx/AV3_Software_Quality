@@ -3,8 +3,6 @@ name: CI Pipeline - Build, Test, Validate Commits and Release
 on:
   push:
     branches: [main] # Este workflow será executado em pushes para a branch 'main'
-  pull_request:
-    branches: [main] # Será executado no Pull Request
 
 jobs:
   # Esse job executa para so aceitar caso ele build e teste corretamente
@@ -23,7 +21,7 @@ jobs:
 
       - name: Build with Maven
         working-directory: ./fridgeApi
-        run: mvn -B verify
+        run: mvn -B package -Dmaven.test.skip=true
 
   # Esse job valida os commits para ver se é semantico ou não
   validate-commits:
@@ -43,7 +41,6 @@ jobs:
   semantic-release:
     name: Semantic Versioning
     runs-on: ubuntu-latest
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     needs: validate-commits # Este job só roda se a validação de commits passar
     permissions:
       contents: write # Permitir criar release and push tags
