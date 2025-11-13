@@ -93,4 +93,9 @@ public class FridgeItems {
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
 }
