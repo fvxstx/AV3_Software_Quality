@@ -1,88 +1,71 @@
-# 🚀 Guia para Clonar o Projeto e Contribuir
+# 🧊 Projeto Geladeira Inteligente
 
-Este guia vai te ajudar a clonar o projeto do GitHub, criar sua própria
-branch, realizar commits e enviar suas alterações para o repositório
-remoto.
+## 📘 Descrição do Projeto
+O projeto **Geladeira Inteligente** foi desenvolvido como parte da disciplina **Qualidade de Software**.  
+Seu objetivo é simular o funcionamento de uma geladeira controlada por usuários com diferentes níveis de acesso, permitindo o gerenciamento e monitoramento dos itens armazenados.
 
----
+O sistema conta com três principais entidades:
+- **Usuário**
+- **Geladeira**
+- **Geladeira Itens**
 
-## 📥 Clonando o Projeto
+### ⚙️ Funcionalidades Principais
+- **Cadastro de Usuários:** Podem ser classificados como **pais**, **filhos** ou **outros**.
+- **Controle de Acesso:**
+    - **Pais (Administradores):**
+        - Podem **adicionar itens** à geladeira.
+        - Podem **definir restrições** de acesso para determinados itens (itens proibidos para certos usuários).
+    - **Filhos e Outros Usuários:**
+        - Podem **retirar itens** da geladeira, desde que não sejam itens restritos.
+- **Registro de Ações:**
+    - Toda retirada de item é **registrada no sistema**, permitindo o acompanhamento de quais usuários retiraram cada item e em qual momento.
 
-1.  Abra o terminal na pasta onde deseja salvar o projeto.
-2.  Execute o comando abaixo substituindo pelo link do repositório:
+### 🧩 Entidades do Sistema
+1. **Usuário**
+    - Atributos principais: `id`, `nome`, `tipo` (pai, filho, outro)
+2. **Geladeira**
+    - Atributos principais: `id`, `nome`, `localização`
+3. **Geladeira Itens**
+    - Atributos principais: `id`, `nome`, `quantidade`, `restritoPara`, `dataAdicao`, `dataRemocao`
 
-```bash
-git clone https://github.com/usuario/repositorio.git
-```
-
-3.  Entre na pasta do projeto clonado:
-
-```bash
-cd repositorio
-```
-
----
-
-## 🌱 Criando sua Própria Branch!
-
-1.  Verifique se está na branch principal (`main` ou `master`):
-
-```bash
-git checkout main
-```
-
-2.  Atualize seu repositório local:
-
-```bash
-git pull origin main
-```
-
-3.  Crie e mude para sua branch com seu nome ou tarefa:
-
-```bash
-git checkout -b minha-branch
-```
+### 🧠 Objetivo Pedagógico
+O projeto visa aplicar os conceitos de **qualidade de software**, **boas práticas de desenvolvimento**, e **controle de requisitos funcionais e não funcionais**.  
+Durante o desenvolvimento, foram considerados aspectos como **clareza dos requisitos**, **testabilidade**, **manutenibilidade** e **segurança no controle de acessos**.
 
 ---
 
-## 💾 Fazendo Commits
-
-1.  Adicione as alterações que você fez:
-
-```bash
-git add .
-```
-
-2.  Crie um commit descritivo:
-
-```bash
-git commit -m "Mensagem do commit explicando a alteração"
-```
+## 👨‍💻 Integrantes do Grupo
+- Diogo Da Silva Souza
+- Caue de Souza Luz
+- Danilo Queiroz Nogueira
+- Fausto Bento Torres
+- Vinicius Lacerda Santos
 
 ---
 
-## ☁️ Enviando para o Repositório Remoto
-
-1.  Envie sua branch para o GitHub:
-
-```bash
-git push origin minha-branch
-```
+## 🏫 Disciplina
+**Qualidade de Software**  
+Curso de **Ciência da Computação**
 
 ---
 
-## ✅ Participantes
+## 🧱 Tecnologias Utilizadas
 
-No **primeiro commit** que você fizer, dê um **check no seu nome**
-abaixo:
-
-- [x] Fausto
-- [x] Vini
-- [x] Mateus
-- [x] Diogo
-- [ ] Danilo
-- [x] Caue
+- Linguagem: Java
+- Banco de Dados: MySQL
+- Framework: Spring Boot 
+- Ferramentas de controle de versão: Git e GitHub
 
 ---
 
-Pronto! Agora você já sabe como contribuir com o projeto. 🎉
+## ✅ Boas Práticas Aplicadas
+- Separação de responsabilidades nas entidades
+- Registro de ações e rastreabilidade
+- Controle de permissões baseado em papéis
+- Adoção de padrões de qualidade e clareza no código
+- Versionamento e documentação contínua
+
+---
+
+## 📄 Licença
+Este projeto foi desenvolvido para fins **acadêmicos** e não possui fins comerciais.
