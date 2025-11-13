@@ -98,8 +98,4 @@ public class FridgeItems {
         this.createdAt = createdAt;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
 }
