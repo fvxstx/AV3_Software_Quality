@@ -40,9 +40,9 @@ public class UsersServiceImplTest {
     public void UsersServiceImpl_createUser_ReturnsSuccess() {
         when(usersRepository.save(any(Users.class))).thenReturn(user);
 
-        String result = usersService.createUser(user);
+        Users result = usersService.createUser(user);
 
-        assertEquals("Success", result);
+        assertEquals(2, result.getId());
         verify(usersRepository, times(1)).save(user);
     }
 

@@ -6,11 +6,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.math.BigInteger;
@@ -21,6 +24,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @ActiveProfiles("test")
+@AutoConfigureMockMvc
+@Transactional
 class UsersControllerIntegrationTest {
 
     @Autowired
@@ -51,17 +56,16 @@ class UsersControllerIntegrationTest {
 
         // 2. Act (POST)
         mockMvc.perform(post("/users")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(newUser)))
-                .andExpect(status().isOk())
-                .andExpect(content().string("Success"));
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(objectMapper.writeValueAsString(newUser)))
+            .andExpect(status().isOk());
 
-        // 3. Act (GET)
+        // 3. Assert
         mockMvc.perform(get("/users")
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(1)))
-                .andExpect(jsonPath("$[0].email").value("fulltest@example.com"));
+            .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$", hasSize(1)))
+            .andExpect(jsonPath("$[0].email").value("fulltest@example.com"));
     }
 
     @Test
@@ -103,5 +107,42 @@ class UsersControllerIntegrationTest {
         // 3. Assert
         mockMvc.perform(get("/users/{userId}", userIdToDelete))
                 .andExpect(status().isNotFound());
+    }
+
+    @Test
+    void updateUserDetails_ShouldUpdateUser() throws Exception {
+        Users originalUser = createTestUser("updateuser@test.com", "originalpass");
+
+        MvcResult postResult = mockMvc.perform(post("/users")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(originalUser)))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        String jsonResponse = postResult.getResponse().getContentAsString();
+        Users createdUser = objectMapper.readValue(jsonResponse, Users.class);
+
+        Long userIdToUpdate = createdUser.getId();
+        Users updatedUserData = new Users();
+        updatedUserData.setName("New Updated Name");
+        updatedUserData.setEmail("updateuser@test.com");
+        updatedUserData.setPassword("newSecurePass123");
+
+        // 2. Act:
+        mockMvc.perform(put("/users/{userId}", userIdToUpdate)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(updatedUserData)))
+                // 3. Assert (Response)
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(userIdToUpdate))
+                .andExpect(jsonPath("$.name").value("New Updated Name"))
+                .andExpect(jsonPath("$.email").value("updateuser@test.com"));
+
+        // 3. Assert (Verification)
+        mockMvc.perform(get("/users/{userId}", userIdToUpdate)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name").value("New Updated Name"))
+                .andExpect(jsonPath("$.email").value("updateuser@test.com"));
     }
 }

@@ -80,15 +80,15 @@ class FridgeItemsControllerIntegrationTest {
         FridgeItems item = createTestItem("Leite Integral", 2);
 
         mockMvc.perform(post("/fridge-items")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(item)))
-                .andExpect(status().isOk())
-                .andExpect(content().string("Success"));
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(objectMapper.writeValueAsString(item)))
+            .andExpect(status().isOk())
+            .andExpect(content().string("Success"));
 
         String response = mockMvc.perform(get("/fridge-items"))
-                .andReturn()
-                .getResponse()
-                .getContentAsString();
+            .andReturn()
+            .getResponse()
+            .getContentAsString();
 
         List<FridgeItems> items = objectMapper.readValue(
                 response,
@@ -154,7 +154,48 @@ class FridgeItemsControllerIntegrationTest {
                 .andExpect(status().isNotFound());
     }
 
+    // # FRIDGE ITENS LOG
+    @Test
+    void updateItem_ShouldAutomaticallyCreateLogEntry() throws Exception {
+        // Arrange
+        Long itemId = createItemAndReturnId();
+        String itemName = "Leite Integral";
 
+        // Act
+        mockMvc.perform(put("/fridge-items/{id}", itemId))
+                .andExpect(status().isOk());
+
+        // Assert
+        mockMvc.perform(get("/fridge-items-log"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(1)))
+                .andExpect(jsonPath("$[0].fridgeItemId").value(itemId))
+                .andExpect(jsonPath("$[0].fridgeItemName").value(itemName))
+                .andExpect(jsonPath("$[0].username").exists())
+                .andExpect(jsonPath("$[0].description").exists())
+                .andExpect(jsonPath("$[0].createdAt").exists());
+    }
+
+    @Test
+    void deleteItem_ShouldAutomaticallyCreateLogEntry() throws Exception {
+        // Arrange
+        Long itemId = createItemAndReturnId();
+        String itemName = "Leite Integral";
+
+        // Act
+        mockMvc.perform(delete("/fridge-items/{id}", itemId))
+                .andExpect(status().isOk());
+
+        // Assert
+        mockMvc.perform(get("/fridge-items-log"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(1)))
+                .andExpect(jsonPath("$[0].fridgeItemId").value(itemId))
+                .andExpect(jsonPath("$[0].fridgeItemName").value(itemName))
+                .andExpect(jsonPath("$[0].username").exists())
+                .andExpect(jsonPath("$[0].description").exists())
+                .andExpect(jsonPath("$[0].createdAt").exists());
+    }
 }
 
 

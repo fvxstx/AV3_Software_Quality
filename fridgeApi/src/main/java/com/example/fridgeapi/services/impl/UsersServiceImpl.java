@@ -19,10 +19,10 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public String createUser(Users user) {
+    public Users createUser(Users user) {
         user.setCreatedAt(LocalDateTime.now());
         usersRepository.save(user);
-        return "Success";
+        return user;
     }
 
     @Override

@@ -26,7 +26,8 @@ class FridgeItemsServiceimplTest {
 
     @Mock
     private FridgeItemsRepository fridgeItemsRepository;
-
+    @Mock
+    private FridgeItemsLogService fridgeItemsLogService;
     @InjectMocks
     private FridgeItemsServiceimpl fridgeItemsService;
 
@@ -34,7 +35,6 @@ class FridgeItemsServiceimplTest {
 
     @BeforeEach
     void setUp() {
-
         mockFridgeItem = new FridgeItems();
         mockFridgeItem.setId(1L);
         mockFridgeItem.setName("Milk");
@@ -44,7 +44,6 @@ class FridgeItemsServiceimplTest {
 
     @Test
     void testGetFridgeItem_ShouldReturnItem_WhenFound() {
-
         when(fridgeItemsRepository.findById(1L)).thenReturn(Optional.of(mockFridgeItem));
 
         FridgeItems result = fridgeItemsService.getFridgeItem(1L);
@@ -69,7 +68,6 @@ class FridgeItemsServiceimplTest {
 
     @Test
     void testCreateFridgeItem_ShouldSetCreatedAtAndSave() {
-
         FridgeItems newItem = new FridgeItems();
         newItem.setName("Cheese");
 
@@ -102,6 +100,7 @@ class FridgeItemsServiceimplTest {
 
         when(fridgeItemsRepository.findById(mockFridgeItem.getId())).thenReturn(Optional.of(mockFridgeItem));
         when(fridgeItemsRepository.save(itemCaptor.capture())).thenReturn(mockFridgeItem);
+        doNothing().when(fridgeItemsLogService.log(mockFridgeItem, "Item alterado da geladeira teste"));
 
         String result = fridgeItemsService.updateFridgeItem(mockFridgeItem);
 
@@ -113,6 +112,7 @@ class FridgeItemsServiceimplTest {
         assertEquals("Fresh Milk", updatedItem.getName());
         verify(fridgeItemsRepository, times(1)).findById(mockFridgeItem.getId());
         verify(fridgeItemsRepository, times(1)).save(mockFridgeItem);
+        verify(fridgeItemsLogService, times(1)).log(eq(mockFridgeItem));
     }
 
     @Test
@@ -120,12 +120,13 @@ class FridgeItemsServiceimplTest {
         Long itemId = 2L;
 
         doNothing().when(fridgeItemsRepository).deleteById(itemId);
+        doNothing().when(fridgeItemsLogService.log(mockFridgeItem, "Item deletado da geladeira teste"));
 
         String result = fridgeItemsService.deleteFridgeItem(itemId);
-
         assertEquals("Success", result);
 
         verify(fridgeItemsRepository, times(1)).deleteById(itemId);
+        verify(fridgeItemsLogService, times(1)).log(eq(mockFridgeItem));
     }
 
     @Test
