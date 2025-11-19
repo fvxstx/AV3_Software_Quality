@@ -1,8 +1,12 @@
 package com.example.fridgeapi.services.impl;
 
 import com.example.fridgeapi.models.FridgeItems;
+import com.example.fridgeapi.models.FridgeItemsLog;
 import com.example.fridgeapi.models.Fridges;
+import com.example.fridgeapi.models.Users;
+import com.example.fridgeapi.repositories.FridgeItemsLogRepository;
 import com.example.fridgeapi.repositories.FridgeItemsRepository;
+import com.example.fridgeapi.repositories.UsersRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -27,11 +31,15 @@ class FridgeItemsServiceimplTest {
     @Mock
     private FridgeItemsRepository fridgeItemsRepository;
     @Mock
-    private FridgeItemsLogService fridgeItemsLogService;
+    private FridgeItemsLogRepository fridgeItemsLogRepository;
+    @Mock
+    private UsersRepository usersRepository;
+
     @InjectMocks
     private FridgeItemsServiceimpl fridgeItemsService;
 
     private FridgeItems mockFridgeItem;
+    private Users mockUser;
 
     @BeforeEach
     void setUp() {
@@ -40,6 +48,11 @@ class FridgeItemsServiceimplTest {
         mockFridgeItem.setName("Milk");
         mockFridgeItem.setQuantity(1);
         mockFridgeItem.setCreatedAt(LocalDateTime.now().minusDays(1));
+
+        mockUser = new Users();
+        mockUser.setId(1L);
+        mockUser.setName("User");
+        mockUser.setToken("token");
     }
 
     @Test
@@ -93,40 +106,47 @@ class FridgeItemsServiceimplTest {
 
     @Test
     void testUpdateFridgeItem_ShouldSetCreatedAtAndSave() {
+        ArgumentCaptor<FridgeItemsLog> logCaptor = ArgumentCaptor.forClass(FridgeItemsLog.class);
+        ArgumentCaptor<FridgeItems> itemCaptor = ArgumentCaptor.forClass(FridgeItems.class);
 
         mockFridgeItem.setName("Fresh Milk");
 
-        ArgumentCaptor<FridgeItems> itemCaptor = ArgumentCaptor.forClass(FridgeItems.class);
-
         when(fridgeItemsRepository.findById(mockFridgeItem.getId())).thenReturn(Optional.of(mockFridgeItem));
-        when(fridgeItemsRepository.save(itemCaptor.capture())).thenReturn(mockFridgeItem);
-        doNothing().when(fridgeItemsLogService.log(mockFridgeItem, "Item alterado da geladeira teste"));
+        when(usersRepository.findByToken(mockUser.getToken())).thenReturn(Optional.of(mockUser));
+        when(fridgeItemsLogRepository.save(any(FridgeItemsLog.class))).thenAnswer(i -> i.getArguments()[0]);
+        when(fridgeItemsRepository.save(any(FridgeItems.class))).thenAnswer(i -> i.getArguments()[0]);
 
-        String result = fridgeItemsService.updateFridgeItem(mockFridgeItem);
+        String result = fridgeItemsService.updateFridgeItem(mockFridgeItem, mockUser.getToken());
+        verify(fridgeItemsRepository, times(1)).findById(mockFridgeItem.getId());
+        verify(fridgeItemsRepository, times(1)).save(itemCaptor.capture());
+        verify(fridgeItemsLogRepository, times(1)).save(logCaptor.capture());
 
         assertEquals("Success", result);
-
         FridgeItems updatedItem = itemCaptor.getValue();
-
-        assertEquals(mockFridgeItem.getCreatedAt(), updatedItem.getCreatedAt());
         assertEquals("Fresh Milk", updatedItem.getName());
-        verify(fridgeItemsRepository, times(1)).findById(mockFridgeItem.getId());
-        verify(fridgeItemsRepository, times(1)).save(mockFridgeItem);
-        verify(fridgeItemsLogService, times(1)).log(eq(mockFridgeItem));
+
+        FridgeItemsLog capturedLog = logCaptor.getValue();
+        assertEquals("Item atualizado", capturedLog.getDescription());
     }
 
     @Test
     void testDeleteFridgeItem_ShouldCallDeleteByIdAndReturnSuccess() {
         Long itemId = 2L;
+        ArgumentCaptor<FridgeItemsLog> logCaptor = ArgumentCaptor.forClass(FridgeItemsLog.class);
 
+        when(fridgeItemsRepository.findById(itemId)).thenReturn(Optional.ofNullable(mockFridgeItem));
+        when(usersRepository.findByToken(mockUser.getToken())).thenReturn(Optional.of(mockUser));
+
+        when(fridgeItemsLogRepository.save(any(FridgeItemsLog.class))).thenAnswer(i -> i.getArguments()[0]);
         doNothing().when(fridgeItemsRepository).deleteById(itemId);
-        doNothing().when(fridgeItemsLogService.log(mockFridgeItem, "Item deletado da geladeira teste"));
 
-        String result = fridgeItemsService.deleteFridgeItem(itemId);
+        String result = fridgeItemsService.deleteFridgeItem(itemId, mockUser.getToken());
         assertEquals("Success", result);
 
         verify(fridgeItemsRepository, times(1)).deleteById(itemId);
-        verify(fridgeItemsLogService, times(1)).log(eq(mockFridgeItem));
+        verify(fridgeItemsLogRepository, times(1)).save(logCaptor.capture());
+        FridgeItemsLog capturedLog = logCaptor.getValue();
+        assertEquals("Item removido", capturedLog.getDescription());
     }
 
     @Test

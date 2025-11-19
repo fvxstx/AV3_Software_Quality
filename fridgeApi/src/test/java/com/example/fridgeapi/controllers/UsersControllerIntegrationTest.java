@@ -85,8 +85,7 @@ class UsersControllerIntegrationTest {
         mockMvc.perform(post("/users/login")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(loginDto)))
-                .andExpect(status().isOk())
-                .andExpect(content().string("token valid 123123123124123"));
+                .andExpect(status().isOk());
     }
 
     @Test

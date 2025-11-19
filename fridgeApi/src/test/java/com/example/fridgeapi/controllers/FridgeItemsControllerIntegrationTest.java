@@ -3,6 +3,7 @@ package com.example.fridgeapi.controllers;
 import com.example.fridgeapi.models.ItemType;
 import com.example.fridgeapi.models.FridgeItems;
 import com.example.fridgeapi.models.Fridges;
+import com.example.fridgeapi.models.Users;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -34,6 +35,7 @@ class FridgeItemsControllerIntegrationTest {
     private ObjectMapper objectMapper;
 
     private Long createdFridgeId;
+    private String createdUserToken;
 
     @BeforeEach
     void setup() throws Exception {
@@ -59,6 +61,29 @@ class FridgeItemsControllerIntegrationTest {
                 new com.fasterxml.jackson.core.type.TypeReference<List<Fridges>>() {}
         );
         createdFridgeId = fridges.get(0).getId();
+
+        // Criar usuario antes de testar os items
+        Users user = new Users();
+        user.setEmail("fausto@teste.com");
+        user.setName("fausto@teste.com".split("@")[0]);
+        user.setPassword("password");
+        user.setToken("token");
+
+        mockMvc.perform(post("/users")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(user)))
+                .andExpect(status().isOk());
+
+        String responseUser = mockMvc.perform(get("/users"))
+                .andReturn()
+                .getResponse()
+                .getContentAsString();
+
+        List<Users> users = objectMapper.readValue(
+                responseUser,
+                new com.fasterxml.jackson.core.type.TypeReference<List<Users>>() {}
+        );
+        createdUserToken = users.getFirst().getToken();
     }
 
     private FridgeItems createTestItem(String name, int quantity) {
@@ -77,7 +102,7 @@ class FridgeItemsControllerIntegrationTest {
     }
 
     private Long createItemAndReturnId() throws Exception {
-        FridgeItems item = createTestItem("Leite Integral", 2);
+        FridgeItems item = createTestItem("Leite Integral", 1);
 
         mockMvc.perform(post("/fridge-items")
             .contentType(MediaType.APPLICATION_JSON)
@@ -123,7 +148,7 @@ class FridgeItemsControllerIntegrationTest {
         FridgeItems updatedItem = createTestItem("Leite Integral", 10);
         updatedItem.setId(itemId);
 
-        mockMvc.perform(put("/fridge-items")
+        mockMvc.perform(put("/fridge-items?token=token")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(updatedItem)))
                 .andExpect(status().isOk())
@@ -140,7 +165,7 @@ class FridgeItemsControllerIntegrationTest {
 
         Long itemId = createItemAndReturnId();
 
-        mockMvc.perform(delete("/fridge-items/{id}", itemId))
+        mockMvc.perform(delete("/fridge-items/{id}?token=token", itemId))
                 .andExpect(status().isOk())
                 .andExpect(content().string("Success"));
 
@@ -152,49 +177,6 @@ class FridgeItemsControllerIntegrationTest {
     void getNonExistentItem_ShouldReturnNotFound() throws Exception {
         mockMvc.perform(get("/fridge-items/{id}", 999))
                 .andExpect(status().isNotFound());
-    }
-
-    // # FRIDGE ITENS LOG
-    @Test
-    void updateItem_ShouldAutomaticallyCreateLogEntry() throws Exception {
-        // Arrange
-        Long itemId = createItemAndReturnId();
-        String itemName = "Leite Integral";
-
-        // Act
-        mockMvc.perform(put("/fridge-items/{id}", itemId))
-                .andExpect(status().isOk());
-
-        // Assert
-        mockMvc.perform(get("/fridge-items-log"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(1)))
-                .andExpect(jsonPath("$[0].fridgeItemId").value(itemId))
-                .andExpect(jsonPath("$[0].fridgeItemName").value(itemName))
-                .andExpect(jsonPath("$[0].username").exists())
-                .andExpect(jsonPath("$[0].description").exists())
-                .andExpect(jsonPath("$[0].createdAt").exists());
-    }
-
-    @Test
-    void deleteItem_ShouldAutomaticallyCreateLogEntry() throws Exception {
-        // Arrange
-        Long itemId = createItemAndReturnId();
-        String itemName = "Leite Integral";
-
-        // Act
-        mockMvc.perform(delete("/fridge-items/{id}", itemId))
-                .andExpect(status().isOk());
-
-        // Assert
-        mockMvc.perform(get("/fridge-items-log"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(1)))
-                .andExpect(jsonPath("$[0].fridgeItemId").value(itemId))
-                .andExpect(jsonPath("$[0].fridgeItemName").value(itemName))
-                .andExpect(jsonPath("$[0].username").exists())
-                .andExpect(jsonPath("$[0].description").exists())
-                .andExpect(jsonPath("$[0].createdAt").exists());
     }
 }
 
