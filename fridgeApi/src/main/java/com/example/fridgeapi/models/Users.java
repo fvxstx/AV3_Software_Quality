@@ -19,6 +19,7 @@ public class Users implements Serializable {
     private String password;
     private UserType type;
     private LocalDateTime createdAt;
+    private String token;
 
     public Users() {
 
@@ -79,4 +80,11 @@ public class Users implements Serializable {
         this.createdAt = createdAt;
     }
 
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
 }

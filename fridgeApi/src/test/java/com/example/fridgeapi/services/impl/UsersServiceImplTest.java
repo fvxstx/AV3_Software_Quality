@@ -34,15 +34,16 @@ public class UsersServiceImplTest {
         user.setName("John Doe");
         user.setEmail("john.doe@example.com");
         user.setPassword("password123");
+        user.setToken("token123");
     }
 
     @Test
     public void UsersServiceImpl_createUser_ReturnsSuccess() {
         when(usersRepository.save(any(Users.class))).thenReturn(user);
 
-        String result = usersService.createUser(user);
+        Users result = usersService.createUser(user);
 
-        assertEquals("Success", result);
+        assertEquals(2, result.getId());
         verify(usersRepository, times(1)).save(user);
     }
 
@@ -95,7 +96,7 @@ public class UsersServiceImplTest {
 
         String result = usersService.loginUser(user.getEmail(), "password123");
 
-        assertEquals("token valid 123123123124123", result);
+        assertEquals("Token: " + user.getToken(), result);
         verify(usersRepository, times(1)).findByEmail(user.getEmail());
     }
 

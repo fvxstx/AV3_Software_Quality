@@ -3,6 +3,7 @@ package com.example.fridgeapi.controllers;
 import com.example.fridgeapi.models.ItemType;
 import com.example.fridgeapi.models.FridgeItems;
 import com.example.fridgeapi.models.Fridges;
+import com.example.fridgeapi.models.Users;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -34,6 +35,7 @@ class FridgeItemsControllerIntegrationTest {
     private ObjectMapper objectMapper;
 
     private Long createdFridgeId;
+    private String createdUserToken;
 
     @BeforeEach
     void setup() throws Exception {
@@ -59,6 +61,29 @@ class FridgeItemsControllerIntegrationTest {
                 new com.fasterxml.jackson.core.type.TypeReference<List<Fridges>>() {}
         );
         createdFridgeId = fridges.get(0).getId();
+
+        // Criar usuario antes de testar os items
+        Users user = new Users();
+        user.setEmail("fausto@teste.com");
+        user.setName("fausto@teste.com".split("@")[0]);
+        user.setPassword("password");
+        user.setToken("token");
+
+        mockMvc.perform(post("/users")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(user)))
+                .andExpect(status().isOk());
+
+        String responseUser = mockMvc.perform(get("/users"))
+                .andReturn()
+                .getResponse()
+                .getContentAsString();
+
+        List<Users> users = objectMapper.readValue(
+                responseUser,
+                new com.fasterxml.jackson.core.type.TypeReference<List<Users>>() {}
+        );
+        createdUserToken = users.getFirst().getToken();
     }
 
     private FridgeItems createTestItem(String name, int quantity) {
@@ -77,18 +102,18 @@ class FridgeItemsControllerIntegrationTest {
     }
 
     private Long createItemAndReturnId() throws Exception {
-        FridgeItems item = createTestItem("Leite Integral", 2);
+        FridgeItems item = createTestItem("Leite Integral", 1);
 
         mockMvc.perform(post("/fridge-items")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(item)))
-                .andExpect(status().isOk())
-                .andExpect(content().string("Success"));
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(objectMapper.writeValueAsString(item)))
+            .andExpect(status().isOk())
+            .andExpect(content().string("Success"));
 
         String response = mockMvc.perform(get("/fridge-items"))
-                .andReturn()
-                .getResponse()
-                .getContentAsString();
+            .andReturn()
+            .getResponse()
+            .getContentAsString();
 
         List<FridgeItems> items = objectMapper.readValue(
                 response,
@@ -123,7 +148,7 @@ class FridgeItemsControllerIntegrationTest {
         FridgeItems updatedItem = createTestItem("Leite Integral", 10);
         updatedItem.setId(itemId);
 
-        mockMvc.perform(put("/fridge-items")
+        mockMvc.perform(put("/fridge-items?token=token")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(updatedItem)))
                 .andExpect(status().isOk())
@@ -140,7 +165,7 @@ class FridgeItemsControllerIntegrationTest {
 
         Long itemId = createItemAndReturnId();
 
-        mockMvc.perform(delete("/fridge-items/{id}", itemId))
+        mockMvc.perform(delete("/fridge-items/{id}?token=token", itemId))
                 .andExpect(status().isOk())
                 .andExpect(content().string("Success"));
 
@@ -153,8 +178,6 @@ class FridgeItemsControllerIntegrationTest {
         mockMvc.perform(get("/fridge-items/{id}", 999))
                 .andExpect(status().isNotFound());
     }
-
-
 }
 
 

@@ -3,12 +3,9 @@ package com.example.fridgeapi.controllers;
 import com.example.fridgeapi.dtos.LoginDto;
 import com.example.fridgeapi.models.Users;
 import com.example.fridgeapi.services.UsersService;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.math.BigInteger;
 import java.util.List;
 
 @RestController
@@ -39,7 +36,7 @@ public class UsersController {
         return usersService.loginUser(loginDto.email(), loginDto.password());}
 
     @PostMapping
-    public String createUserDetails(@RequestBody Users users){
+    public Users createUserDetails(@RequestBody Users users){
         return usersService.createUser(users);
     }
 
