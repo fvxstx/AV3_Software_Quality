@@ -30,12 +30,12 @@ public class FridgeItemsController {
     }
 
     @PutMapping
-    public String updateFridgeItemDetails(@RequestBody FridgeItems fridgeItems){
-        return FridgeItemsService.updateFridgeItem(fridgeItems);
+    public String updateFridgeItemDetails(@RequestBody FridgeItems fridgeItems, @RequestParam String token){
+        return FridgeItemsService.updateFridgeItem(fridgeItems, token);
     }
     
     @DeleteMapping("{fridgeItemId}")
-    public String deleteFridgeItemDetails(@PathVariable("fridgeItemId") Long fridgeItemId ){
-        return FridgeItemsService.deleteFridgeItem(fridgeItemId);
+    public String deleteFridgeItemDetails(@PathVariable("fridgeItemId") Long fridgeItemId , @RequestParam String token){
+        return FridgeItemsService.deleteFridgeItem(fridgeItemId, token);
     }
 }

@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 //import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Random;
+import java.util.UUID;
 
 @Service
 public class UsersServiceImpl implements UsersService {
@@ -19,10 +21,10 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public String createUser(Users user) {
+    public Users createUser(Users user) {
         user.setCreatedAt(LocalDateTime.now());
         usersRepository.save(user);
-        return "Success";
+        return user;
     }
 
     @Override
@@ -57,8 +59,12 @@ public class UsersServiceImpl implements UsersService {
         var user = usersRepository.findByEmail(email);
 
         if (user.isEmpty()) throw new RuntimeException("User not found");
-        if(user.get().getPassword().equals(password))
-            return "token valid 123123123124123";
+        if(user.get().getPassword().equals(password)){
+            String token = UUID.randomUUID().toString();
+            user.get().setToken(token);
+            usersRepository.save(user.get());
+            return "Token: " + token;
+        }
 
         else return "";
     }
