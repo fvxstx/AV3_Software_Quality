@@ -41,8 +41,15 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public String deleteUser(Long userId) {
-        usersRepository.deleteById(userId);
-        return "Success";
+
+        if (usersRepository.existsById(userId)) {
+
+            usersRepository.deleteById(userId);
+            return "User Deleted";
+
+        } else {
+            throw new RuntimeException("User not found");
+        }
     }
 
     @Override
