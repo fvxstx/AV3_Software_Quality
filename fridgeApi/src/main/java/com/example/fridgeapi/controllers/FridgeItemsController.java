@@ -35,7 +35,7 @@ public class FridgeItemsController {
     }
 
     @DeleteMapping("{fridgeItemId}")
-    public String deleteFridgeItemDetails(@PathVariable("fridgeItemId") Long fridgeItemId , @RequestParam String token){
+    public String deleteFridgeItemDetails(@PathVariable("fridgeItemId") Long fridgeItemId , @RequestHeader("X-Token") String token){
         return FridgeItemsService.deleteFridgeItem(fridgeItemId, token);
     }
 }

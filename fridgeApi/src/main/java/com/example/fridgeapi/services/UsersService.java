@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import com.example.fridgeapi.dtos.LoginResponse;
 
-@Service
 public interface UsersService {
     public Users createUser(Users user);
     public Users updateUser(Long id, Users user);

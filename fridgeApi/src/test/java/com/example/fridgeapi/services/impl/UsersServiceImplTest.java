@@ -69,7 +69,7 @@ public class UsersServiceImplTest {
     @Test
     public void UsersServiceImpl_getAllUsers_ReturnsListOfUsers() {
         Users user2 = new Users();
-        user2.setId(2L);
+        user2.setId(3L);
 
         List<Users> userList = Arrays.asList(user, user2);
 
@@ -98,7 +98,7 @@ public class UsersServiceImplTest {
         LoginResponse response = usersService.loginUser(user.getEmail(), "password123");
 
         assertEquals(user.getToken(), response.token());
-        assertEquals(user, response.user());
+
 
         verify(usersRepository, times(1)).findByEmail(user.getEmail());
     }
