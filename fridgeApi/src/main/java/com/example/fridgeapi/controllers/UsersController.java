@@ -1,6 +1,7 @@
 package com.example.fridgeapi.controllers;
 
 import com.example.fridgeapi.dtos.LoginDto;
+import com.example.fridgeapi.dtos.LoginResponse;
 import com.example.fridgeapi.models.Users;
 import com.example.fridgeapi.services.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +33,10 @@ public class UsersController {
     }
 
     @PostMapping("/login")
-    public String loginUser(@RequestBody LoginDto loginDto){
-        return usersService.loginUser(loginDto.email(), loginDto.password());}
+    public ResponseEntity<LoginResponse> loginUser(@RequestBody LoginDto loginDto){
+        LoginResponse response = usersService.loginUser(loginDto.email(), loginDto.password());
+        return ResponseEntity.ok(response);
+    }
 
     @PostMapping
     public Users createUserDetails(@RequestBody Users users){

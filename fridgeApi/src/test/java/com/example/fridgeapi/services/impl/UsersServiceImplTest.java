@@ -1,6 +1,7 @@
 package com.example.fridgeapi.services.impl;
 
 import com.example.fridgeapi.models.Users;
+import com.example.fridgeapi.dtos.LoginResponse;
 import com.example.fridgeapi.repositories.UsersRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -94,9 +95,11 @@ public class UsersServiceImplTest {
     public void UsersServiceImpl_loginUser_ReturnsTokenOnSuccess() {
         when(usersRepository.findByEmail(user.getEmail())).thenReturn(Optional.of(user));
 
-        String result = usersService.loginUser(user.getEmail(), "password123");
+        LoginResponse response = usersService.loginUser(user.getEmail(), "password123");
 
-        assertEquals("Token: " + user.getToken(), result);
+        assertEquals(user.getToken(), response.token());
+        assertEquals(user, response.user());
+
         verify(usersRepository, times(1)).findByEmail(user.getEmail());
     }
 
@@ -112,7 +115,7 @@ public class UsersServiceImplTest {
     public void UsersServiceImpl_loginUser_ReturnsEmptyStringOnIncorrectPassword() {
         when(usersRepository.findByEmail(user.getEmail())).thenReturn(Optional.of(user));
 
-        String result = usersService.loginUser(user.getEmail(), "wrongPassword");
+        LoginResponse  result = usersService.loginUser(user.getEmail(), "wrongPassword");
 
         assertEquals("", result);
         verify(usersRepository, times(1)).findByEmail(user.getEmail());

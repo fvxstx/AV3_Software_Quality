@@ -3,6 +3,8 @@ package com.example.fridgeapi.services.impl;
 import com.example.fridgeapi.models.FridgeItemsLog;
 import com.example.fridgeapi.repositories.FridgeItemsLogRepository;
 import com.example.fridgeapi.repositories.UsersRepository;
+import com.example.fridgeapi.models.UserType;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -54,6 +56,15 @@ public class FridgeItemsServiceimpl implements FridgeItemsService {
             throw new RuntimeException("User not found");
         }
 
+        FridgeItems item = fridgeItemsRepository.findById(fridgeItems.getId())
+                .orElseThrow(() -> new RuntimeException("Item not found"));
+
+        if (user.get().getType() == UserType.Children && !item.isAvailableForChildren()) {
+            throw new RuntimeException("Children cannot modify or delete this item");
+        }
+
+
+
         FridgeItems existingItem = fridgeItemsRepository.findById(fridgeItems.getId()).get();
         LocalDateTime originalCreationDate = existingItem.getCreatedAt();
         fridgeItems.setCreatedAt(originalCreationDate);
@@ -67,10 +78,19 @@ public class FridgeItemsServiceimpl implements FridgeItemsService {
 
     @Override
     public String deleteFridgeItem(Long fridgeItemId, String token) {
+
         var user =  usersRepository.findByToken(token);
         if(user.isEmpty()){
             throw new RuntimeException("User not found");
         }
+
+        FridgeItems item = fridgeItemsRepository.findById(fridgeItemId)
+                .orElseThrow(() -> new RuntimeException("Item not found"));
+
+        if (user.get().getType() == UserType.Children && !item.isAvailableForChildren()) {
+            throw new RuntimeException("Children cannot delete this item");
+        }
+
         FridgeItems existingItem = fridgeItemsRepository.findById(fridgeItemId).get();
         FridgeItemsLog log = new FridgeItemsLog(existingItem, user.get(), "Item removido");
         fridgeItemsLogRepository.save(log);
