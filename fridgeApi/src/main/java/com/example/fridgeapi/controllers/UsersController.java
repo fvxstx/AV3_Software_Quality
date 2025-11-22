@@ -1,6 +1,7 @@
 package com.example.fridgeapi.controllers;
 
 import com.example.fridgeapi.dtos.LoginDto;
+import com.example.fridgeapi.dtos.LoginResponse;
 import com.example.fridgeapi.models.Users;
 import com.example.fridgeapi.services.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,12 +33,19 @@ public class UsersController {
     }
 
     @PostMapping("/login")
-    public String loginUser(@RequestBody LoginDto loginDto){
-        return usersService.loginUser(loginDto.email(), loginDto.password());}
+    public ResponseEntity<LoginResponse> loginUser(@RequestBody LoginDto loginDto){
+        LoginResponse response = usersService.loginUser(loginDto.email(), loginDto.password());
+        return ResponseEntity.ok(response);
+    }
 
     @PostMapping
-    public Users createUserDetails(@RequestBody Users users){
-        return usersService.createUser(users);
+    public ResponseEntity<String> createUserDetails(@RequestBody Users users){
+        Users createdUser = usersService.createUser(users);
+
+        String message = "User created with success!";
+
+        return ResponseEntity.status(201).body(message);
+        //return usersService.createUser(users);
     }
 
     @PutMapping("/{id}")
@@ -49,6 +57,7 @@ public class UsersController {
     @DeleteMapping("{userId}")
     public ResponseEntity<String> deleteUserDetails(@PathVariable("userId") Long userId){
         usersService.deleteUser(userId);
-        return ResponseEntity.noContent().build();
+        String message = "User Deleted!";
+        return ResponseEntity.status(201).body(message);
     }
 }

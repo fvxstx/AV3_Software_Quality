@@ -2,6 +2,7 @@ package com.example.fridgeapi.services.impl;
 
 //import com.example.fridgeapi.models.FridgeItems;
 import com.example.fridgeapi.models.Users;
+import com.example.fridgeapi.dtos.LoginResponse;
 import com.example.fridgeapi.repositories.UsersRepository;
 import com.example.fridgeapi.services.UsersService;
 import org.springframework.stereotype.Service;
@@ -40,8 +41,15 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public String deleteUser(Long userId) {
-        usersRepository.deleteById(userId);
-        return "Success";
+
+        if (usersRepository.existsById(userId)) {
+
+            usersRepository.deleteById(userId);
+            return "User Deleted";
+
+        } else {
+            throw new RuntimeException("User not found");
+        }
     }
 
     @Override
@@ -55,17 +63,21 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public String loginUser(String email, String password) {
+    public LoginResponse loginUser(String email, String password) {
         var user = usersRepository.findByEmail(email);
 
-        if (user.isEmpty()) throw new RuntimeException("User not found");
-        if(user.get().getPassword().equals(password)){
+        if (user.isEmpty()) {
+            return new LoginResponse("error", "User not found");
+        }
+
+        if (user.get().getPassword().equals(password)) {
             String token = UUID.randomUUID().toString();
             user.get().setToken(token);
             usersRepository.save(user.get());
-            return "Token: " + token;
-        }
 
-        else return "";
+            return new LoginResponse("success", token);
+        } else {
+            return new LoginResponse("error", "password incorrect");
+        }
     }
 }
