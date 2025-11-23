@@ -5,6 +5,7 @@ import com.example.fridgeapi.dtos.LoginResponse;
 import com.example.fridgeapi.models.Users;
 import com.example.fridgeapi.services.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -39,13 +40,10 @@ public class UsersController {
     }
 
     @PostMapping
-    public ResponseEntity<String> createUserDetails(@RequestBody Users users){
+    public ResponseEntity<Users> createUserDetails(@RequestBody Users users){
         Users createdUser = usersService.createUser(users);
 
-        String message = "User created with success!";
-
-        return ResponseEntity.status(201).body(message);
-        //return usersService.createUser(users);
+        return ResponseEntity.ok((createdUser));
     }
 
     @PutMapping("/{id}")
@@ -57,7 +55,7 @@ public class UsersController {
     @DeleteMapping("{userId}")
     public ResponseEntity<String> deleteUserDetails(@PathVariable("userId") Long userId){
         usersService.deleteUser(userId);
-        String message = "User Deleted!";
-        return ResponseEntity.status(201).body(message);
+        String message = "Success";
+        return ResponseEntity.ok((message));
     }
 }
