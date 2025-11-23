@@ -3,11 +3,11 @@ package karate.config;
 // Este codigo transforma codigos.feature em codigos legiveis as IDEs
 import com.intuit.karate.junit5.Karate;
 
-class FridgesRunner {
+class Runner {
 
     @Karate.Test
     Karate testAll() {
 
-        return Karate.run("classpath:karate/features/Produtos").relativeTo(getClass());
+        return Karate.run("classpath:karate/features").relativeTo(getClass());
     }
 }

@@ -3,11 +3,10 @@ Feature: Testing FridgeItems's CRUD
 Background:
   * url 'http://localhost:8080'
   * header Accept = 'application/json'
+  * def testFridge = { "on" : "true", "temperature" : "24" }
 
-  * def testFridge = { "on" : "true", "temperature" : "11" }
 
-
-    Scenario: '2' Creates a fridge-item and Edit her status, and after deletes it
+    Scenario: '1' Creates, Edit ,  Get Only , and after deletes a fridge-item
 
         # Primeiro: criar um usuario Parent
         Given path '/users'
@@ -54,54 +53,42 @@ Background:
         # Quinto: Editar o item
         Given path '/fridge-items'
         * header token = catchToken
-        * def putFridgeItems = { "id" : #(fridgeItemCatchId), "name" : "ACABOU" , "validDate" : "2026-01-09T10:00:00" , "availableForChildren" : "true" , "quantity" : 1 , "itemType" : "Drinks" , "fridge" : { "id" : #(catchFridgeId) } }
+        * def putFridgeItems = { "id" : #(fridgeItemCatchId), "name" : "Suco De Uva Integral" , "validDate" : "2026-01-09T10:00:00" , "availableForChildren" : "true" , "quantity" : 1 , "itemType" : "Drinks" , "fridge" : { "id" : #(catchFridgeId) } }
         * request putFridgeItems
         When method PUT
         Then status 200
         And print "5"
 
-        # Sexto: Excluir o item ACABOU
+        # Sexto: Pegar apenas o item Suco De Uva Integral no banco de dados
+        Given path '/fridge-items/' , fridgeItemCatchId
+        When method GET
+        Then status 200
+        And print "6"
+
+        # Setimo: Excluir o item Suco De Uva Integral
         Given path '/fridge-items/' , fridgeItemCatchId
         * header token = catchToken
         When method DELETE
         Then status 200
-        And print "6"
+        And print "7"
 
-        # Sexto: Excluir o usuario por conta de duplicidade
+        # Oitavo: Excluir o usuario por conta para não inclui-lo no banco de dados
         Given path '/users/' , catchId
         When method DELETE
         Then status 200
-        And print "7"
+        And print "8"
 
-
-    Scenario: '2' Post and Get one FridgeItem in the database
-
-       # Primeiro cria uma nova geladeira
-       Given path '/fridges'
-       * request testFridge
-       When method POST
+       # Nono: Excluir a geladeira para não inclui-la no banco de dados
+       Given path '/fridges/' , catchFridgeId
+       When method DELETE
        Then status 200
-       * def fridgeCatchId = response.id
-
-       # Depois cria o item
-       Given path '/fridge-items'
-
-       #Item Criado
-       * def testFridgeItems = { "name" : "Coca Cola" , "validDate" : "2026-01-09T10:00:00" , "availableForChildren" : "true" , "quantity" : 1 , "itemType" : "Drinks" , "fridge" : { "id" : #(fridgeCatchId) } }
-       * request testFridgeItems
-       When method POST
-       Then status 200
-       * def fridgeItemCatchId = response.id
-
-       #Em busca do item
-       Given path '/fridge-items' , fridgeItemCatchId
-       When method GET
-       Then status 200
+       And print "9"
 
 
 
-    Scenario: '4' Get all the fridge-items fromm all fridges
+    Scenario: '2' Get all the fridge-items from all the fridges
 
+       # A resposta vai ser null por conta de excluir todos os items
        Given path '/fridge-items'
        When method GET
        Then status 200

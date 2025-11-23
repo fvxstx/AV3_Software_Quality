@@ -1,4 +1,5 @@
 Feature: Testing Users's CRUD and Login
+#Observação depois de cada teste eu decidir excluir os usuarios que seriam criadas, para não encher o banco de dados
 
 Background:
   * url 'http://localhost:8080'
@@ -23,9 +24,13 @@ Background:
        * def catchId = response.id
 
        # Get these fridge created previously
-
        Given path '/users/' , catchId
        When method GET
+       Then status 200
+
+       #Para que o banco de dados não seja preenchido decidi excluir o usuario
+       Given path '/users/' , catchId
+       When method DELETE
        Then status 200
 
 
@@ -45,6 +50,11 @@ Background:
       Given path '/users/' , catchId
       * request putUser
       When method PUT
+      Then status 200
+
+      #Para que o banco de dados não seja preenchido decidi excluir o usuario
+      Given path '/users/' , catchId
+      When method DELETE
       Then status 200
 
 
@@ -67,6 +77,7 @@ Background:
 
     Scenario: '4' Get all the Users created
 
+      # Vai retornar vazio por conta de estar excluindo todos os usuarios
       Given path '/users'
       When method GET
       Then status 200
@@ -77,22 +88,26 @@ Background:
     Scenario: '5' The user logs into the system and receives a token.
 
       Given path '/users'
-      * def testLoginUser = { "name" : "Andre Gomes" , "email" : "AndreGomes@gmail.com" , "password" : "12010209" , "type" : "Children" }
+      * def testLoginUser = { "name" : "Andre Gomes" , "email" : "AndreGomes@gmail.com" , "password" : "12010209" , "type" : "Parent" }
       * request testLoginUser
       When method POST
       Then status 200
       * def catchEmail = response.email
       * def catchPassword = response.password
+      * def catchId = response.id
 
       # Usuario vai logar com email e senha
-
       Given path '/users/login'
       * def userLogin = { "email" : #(catchEmail) , "password" : #(catchPassword) }
       * request userLogin
       When method POST
       Then status 200
-
       * def catchToken = response.token
+
+      #Para que o banco de dados não seja preenchido decidi excluir o usuario
+      Given path '/users/' , catchId
+      When method DELETE
+      Then status 200
 
 
 
