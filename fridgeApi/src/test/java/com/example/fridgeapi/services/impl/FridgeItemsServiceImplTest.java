@@ -92,7 +92,7 @@ class FridgeItemsServiceimplTest {
 
         when(fridgeItemsRepository.save(itemCaptor.capture())).thenReturn(mockFridgeItem);
 
-        String result = fridgeItemsService.createFridgeItem(newItem);
+        FridgeItems result = fridgeItemsService.createFridgeItem(newItem);
 
         assertEquals("Success", result);
 

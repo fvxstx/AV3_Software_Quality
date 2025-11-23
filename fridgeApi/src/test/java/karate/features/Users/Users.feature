@@ -57,7 +57,7 @@ Background:
       Then status 200
       * def catchId = response.id
 
-      # Delete the fridge created!
+      # Delete the user created!
 
       Given path '/users/' , catchId
       When method DELETE

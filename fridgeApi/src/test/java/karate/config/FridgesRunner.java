@@ -8,6 +8,6 @@ class FridgesRunner {
     @Karate.Test
     Karate testAll() {
 
-        return Karate.run("classpath:karate/features/Users").relativeTo(getClass());
+        return Karate.run("classpath:karate/features/Produtos").relativeTo(getClass());
     }
 }
