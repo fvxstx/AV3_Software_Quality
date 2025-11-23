@@ -24,10 +24,10 @@ public class FridgesServiceimpl implements FridgesService {
     }
 
     @Override
-    public String createFridge(Fridges fridge) {
+    public Fridges createFridge(Fridges fridge) {
         fridge.setCreatedAt(LocalDateTime.now());
-        fridgesRepository.save(fridge);
-        return "Success";
+        return fridgesRepository.save(fridge);
+
     }
 
     @Override
