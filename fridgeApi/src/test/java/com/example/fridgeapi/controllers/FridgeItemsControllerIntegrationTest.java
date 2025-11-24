@@ -1,6 +1,8 @@
 package com.example.fridgeapi.controllers;
 
 import com.example.fridgeapi.models.ItemType;
+import com.example.fridgeapi.models.UserType;
+import com.example.fridgeapi.dtos.LoginResponse;
 import com.example.fridgeapi.models.FridgeItems;
 import com.example.fridgeapi.models.Fridges;
 import com.example.fridgeapi.models.Users;
@@ -39,116 +41,116 @@ class FridgeItemsControllerIntegrationTest {
 
     @BeforeEach
     void setup() throws Exception {
-        // Cria uma geladeira antes de testar os items
+
+        // Cria uma geladeira antes dos testes começarem
         Fridges fridge = new Fridges();
         fridge.setOn(true);
-        fridge.setTemperature("5");
+        fridge.setTemperature("5°C");
 
-        mockMvc.perform(post("/fridges")
+        String fridgeResponse = mockMvc.perform(post("/fridges")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(fridge)))
                 .andExpect(status().isOk())
-                .andExpect(content().string("Success"));
-
-        // Recupera o ID gerado
-        String response = mockMvc.perform(get("/fridges"))
+                .andExpect(jsonPath("$.id").exists())
                 .andReturn()
                 .getResponse()
                 .getContentAsString();
 
-        List<Fridges> fridges = objectMapper.readValue(
-                response,
-                new com.fasterxml.jackson.core.type.TypeReference<List<Fridges>>() {}
-        );
-        createdFridgeId = fridges.get(0).getId();
+        //pegando o id
+        Fridges createdFridge = objectMapper.readValue(fridgeResponse, Fridges.class);
+        createdFridgeId = createdFridge.getId();
 
-        // Criar usuario antes de testar os items
+
+        // Criar as caracteristicas do usuario antes de testar os items
         Users user = new Users();
         user.setEmail("fausto@teste.com");
-        user.setName("fausto@teste.com".split("@")[0]);
+        user.setName("Fausto");
         user.setPassword("password");
-        user.setToken("token");
+        user.setType(UserType.Parent);
 
+        // Criando o usuario em si
         mockMvc.perform(post("/users")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(user)))
                 .andExpect(status().isOk());
 
-        String responseUser = mockMvc.perform(get("/users"))
+        // Logando o usuario
+        String loginResponse = mockMvc.perform(post("/users/login")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(user)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.token").exists())
                 .andReturn()
                 .getResponse()
                 .getContentAsString();
 
-        List<Users> users = objectMapper.readValue(
-                responseUser,
-                new com.fasterxml.jackson.core.type.TypeReference<List<Users>>() {}
-        );
-        createdUserToken = users.getFirst().getToken();
+        //Pegando o token
+        LoginResponse login = objectMapper.readValue(loginResponse, LoginResponse.class);
+        createdUserToken = login.token();
+
+
     }
 
     private FridgeItems createTestItem(String name, int quantity) {
+
         FridgeItems item = new FridgeItems();
         item.setName(name);
         item.setQuantity(quantity);
         item.setItemType(ItemType.Drinks);
-        item.setAvailableForChildren(true);
+        item.setAvailableForChildren(false);
         item.setValidDate(LocalDateTime.now().plusDays(5));
 
-        // referencia a geladeira existente
         Fridges fridge = new Fridges();
         fridge.setId(createdFridgeId);
         item.setFridge(fridge);
+
         return item;
     }
 
-    private Long createItemAndReturnId() throws Exception {
-        FridgeItems item = createTestItem("Leite Integral", 1);
+    private Long createItem() throws Exception {
+        FridgeItems item = createTestItem("Energetico", 1);
 
-        mockMvc.perform(post("/fridge-items")
-            .contentType(MediaType.APPLICATION_JSON)
-            .content(objectMapper.writeValueAsString(item)))
-            .andExpect(status().isOk())
-            .andExpect(content().string("Success"));
+        String response = mockMvc.perform(post("/fridge-items")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(item)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").exists())
+                .andReturn()
+                .getResponse()
+                .getContentAsString();
 
-        String response = mockMvc.perform(get("/fridge-items"))
-            .andReturn()
-            .getResponse()
-            .getContentAsString();
-
-        List<FridgeItems> items = objectMapper.readValue(
-                response,
-                new com.fasterxml.jackson.core.type.TypeReference<List<FridgeItems>>() {}
-        );
-        return items.get(0).getId();
+        return objectMapper.readValue(response, FridgeItems.class).getId();
     }
 
     @Test
     void createAndGetAllItems_ShouldWork() throws Exception {
-        FridgeItems item = createTestItem("Agua", 3);
+        FridgeItems item = createTestItem("Nescau", 3);
 
         mockMvc.perform(post("/fridge-items")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(item)))
                 .andExpect(status().isOk())
-                .andExpect(content().string("Success"));
+                .andExpect(jsonPath("$.id").exists())
+                .andExpect(jsonPath("$.name").value("Nescau"));
 
         mockMvc.perform(get("/fridge-items"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(1)))
-                .andExpect(jsonPath("$[0].name").value("Agua"))
+                .andExpect(jsonPath("$[0].name").value("Nescau"))
                 .andExpect(jsonPath("$[0].quantity").value(3))
                 .andExpect(jsonPath("$[0].fridge.id").value(createdFridgeId));
     }
 
     @Test
-    void updateItem_ShouldChangeQuantity() throws Exception {
+    void updateItem_ShouldChangeQuantityAndName() throws Exception {
 
-        Long itemId = createItemAndReturnId();
+        Long itemId = createItem();
 
-        FridgeItems updatedItem = createTestItem("Leite Integral", 10);
-        updatedItem.setId(itemId);
+        FridgeItems updatedItem = createTestItem("Energetico Com Whisky", 4);
+        updatedItem.setId(itemId); // ID no corpo da requisição
 
-        mockMvc.perform(put("/fridge-items?token=token")
+        mockMvc.perform(put("/fridge-items")
+                        .header("token", createdUserToken)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(updatedItem)))
                 .andExpect(status().isOk())
@@ -156,16 +158,18 @@ class FridgeItemsControllerIntegrationTest {
 
         mockMvc.perform(get("/fridge-items/{id}", itemId))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.quantity").value(10));
+                .andExpect(jsonPath("$.quantity").value(4))
+                .andExpect(jsonPath("$.name").value("Energetico Com Whisky"));
 
     }
 
     @Test
     void deleteItem_ShouldRemoveFromDatabase() throws Exception {
 
-        Long itemId = createItemAndReturnId();
+        Long itemId = createItem();
 
-        mockMvc.perform(delete("/fridge-items/{id}?token=token", itemId))
+        mockMvc.perform(delete("/fridge-items/{id}", itemId)
+                        .header("token", createdUserToken))
                 .andExpect(status().isOk())
                 .andExpect(content().string("Success"));
 

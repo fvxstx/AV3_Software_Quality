@@ -1,10 +1,13 @@
 package com.example.fridgeapi.controllers;
 
+import com.example.fridgeapi.models.UserType;
 import com.example.fridgeapi.dtos.LoginDto;
 import com.example.fridgeapi.models.Users;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.emptyString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -41,6 +44,7 @@ class UsersControllerIntegrationTest {
         user.setEmail(email);
         user.setName(email.split("@")[0]);
         user.setPassword(password);
+        user.setType(UserType.Parent);
         return user;
     }
 
@@ -65,7 +69,8 @@ class UsersControllerIntegrationTest {
             .contentType(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$", hasSize(1)))
-            .andExpect(jsonPath("$[0].email").value("fulltest@example.com"));
+            .andExpect(jsonPath("$[0].email").value("fulltest@example.com"))
+            .andExpect(jsonPath("$[0].password").value("securepass"));
     }
 
     @Test
@@ -85,7 +90,9 @@ class UsersControllerIntegrationTest {
         mockMvc.perform(post("/users/login")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(loginDto)))
-                .andExpect(status().isOk());
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.status").value("success"))
+                .andExpect(jsonPath("$.token", not(emptyString())));
     }
 
     @Test
@@ -93,18 +100,20 @@ class UsersControllerIntegrationTest {
         // 1. Arrange
         Users userToDelete = createTestUser("todelete@test.com", "deletepass");
 
-        mockMvc.perform(post("/users")
+        MvcResult result = mockMvc.perform(post("/users")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(userToDelete)))
-                .andExpect(status().isOk());
+                .andExpect(status().isOk())
+                .andReturn();
 
-        BigInteger userIdToDelete = BigInteger.ONE;
+
+        Users created = objectMapper.readValue(result.getResponse().getContentAsString(), Users.class);
 
         // 2. Act
-        mockMvc.perform(delete("/users/{userId}", userIdToDelete))
-                .andExpect(status().isNoContent());
+        mockMvc.perform(delete("/users/{userId}", created.getId()))
+                .andExpect(status().isOk());
         // 3. Assert
-        mockMvc.perform(get("/users/{userId}", userIdToDelete))
+        mockMvc.perform(get("/users/{userId}", created.getId()))
                 .andExpect(status().isNotFound());
     }
 
