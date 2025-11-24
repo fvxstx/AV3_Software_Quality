@@ -26,7 +26,7 @@ public class FridgesController {
     }
     
     @PostMapping
-    public String createFridgeDetails(@RequestBody Fridges fridges){
+    public Fridges createFridgeDetails(@RequestBody Fridges fridges){
         return fridgesService.createFridge(fridges);
     }
 

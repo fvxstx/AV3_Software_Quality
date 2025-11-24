@@ -73,9 +73,10 @@ class FridgesServiceimplTest {
 
         when(fridgesRepository.save(fridgeCaptor.capture())).thenReturn(newFridge);
 
-        String result = fridgesService.createFridge(newFridge);
-
-        assertEquals("Success", result);
+        Fridges result = fridgesService.createFridge(newFridge);
+        assertNotNull(result);
+        assertEquals("5°C", result.getTemperature());
+        assertNotNull(result.getCreatedAt());
 
         verify(fridgesRepository, times(1)).save(any(Fridges.class));
 

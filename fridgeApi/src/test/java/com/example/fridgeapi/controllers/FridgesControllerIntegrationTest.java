@@ -38,14 +38,15 @@ public class FridgesControllerIntegrationTest {
     }
 
     @Test
-    void shouldCreateANewFridge() throws Exception {
+    void shouldCreateANewFridgeAndReturnJson() throws Exception {
         Fridges fridge = new Fridges(true, "5°C");
 
         mockMvc.perform(post("/fridges")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(fridge)))
                 .andExpect(status().isOk())
-                .andExpect(content().string("Success"));
+                .andExpect(jsonPath("$.id").exists())
+                .andExpect(jsonPath("$.temperature").value("5°C"));
     }
 
     @Test

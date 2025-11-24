@@ -25,17 +25,17 @@ public class FridgeItemsController {
     }
 
     @PostMapping
-    public String createFridgeItemDetails(@RequestBody FridgeItems fridgeItems){
+    public FridgeItems createFridgeItemDetails(@RequestBody FridgeItems fridgeItems){
         return FridgeItemsService.createFridgeItem(fridgeItems);
     }
 
     @PutMapping
-    public String updateFridgeItemDetails(@RequestBody FridgeItems fridgeItems, @RequestHeader("X-Token") String token){
+    public String updateFridgeItemDetails(@RequestBody FridgeItems fridgeItems, @RequestHeader("token") String token){
         return FridgeItemsService.updateFridgeItem(fridgeItems, token);
     }
 
     @DeleteMapping("{fridgeItemId}")
-    public String deleteFridgeItemDetails(@PathVariable("fridgeItemId") Long fridgeItemId , @RequestHeader("X-Token") String token){
+    public String deleteFridgeItemDetails(@PathVariable("fridgeItemId") Long fridgeItemId , @RequestHeader("token") String token){
         return FridgeItemsService.deleteFridgeItem(fridgeItemId, token);
     }
 }

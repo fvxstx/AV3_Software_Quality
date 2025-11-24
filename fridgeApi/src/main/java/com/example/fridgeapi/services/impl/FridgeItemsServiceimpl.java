@@ -36,7 +36,7 @@ public class FridgeItemsServiceimpl implements FridgeItemsService {
     }
 
     @Override
-    public String createFridgeItem(FridgeItems fridgeItems) {
+    public FridgeItems createFridgeItem(FridgeItems fridgeItems) {
 
         if (fridgeItems.getFridge() == null) {
             throw new ResponseStatusException(
@@ -45,8 +45,9 @@ public class FridgeItemsServiceimpl implements FridgeItemsService {
         }
         
         fridgeItems.setCreatedAt(LocalDateTime.now());
-        fridgeItemsRepository.save(fridgeItems);
-        return "Success";    }
+        return fridgeItemsRepository.save(fridgeItems);
+             
+    }
 
     @Override
     public String updateFridgeItem(FridgeItems fridgeItems, String token) {
