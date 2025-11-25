@@ -3,7 +3,7 @@ Feature: Testing FridgeItems's CRUD
 Background:
   * url 'http://localhost:8080'
   * header Accept = 'application/json'
-  * def testFridge = { "on" : "true", "temperature" : "24" }
+  * def testFridge = { "on" : true, "temperature" : 24 }
 
 
     Scenario: '1' Creates, Edit ,  Get Only , and after deletes a fridge-item
@@ -42,7 +42,7 @@ Background:
 
         # Quarto: Criar um item
         Given path '/fridge-items'
-        * def testFridgeItems = { "name" : "Suco De Uva" , "validDate" : "2026-01-09T10:00:00" , "availableForChildren" : "true" , "quantity" : 1 , "itemType" : "Drinks" , "fridge" : { "id" : #(catchFridgeId) } }
+        * def testFridgeItems = { "name" : "Suco De Uva" , "validDate" : "2026-01-09T10:00:00" , "availableForChildren" : true , "quantity" : 1 , "itemType" : "Drinks" , "fridge" : { "id" : #(catchFridgeId) } }
         * request testFridgeItems
         When method POST
         Then status 200
@@ -53,7 +53,7 @@ Background:
         # Quinto: Editar o item
         Given path '/fridge-items'
         * header token = catchToken
-        * def putFridgeItems = { "id" : #(fridgeItemCatchId), "name" : "Suco De Uva Integral" , "validDate" : "2026-01-09T10:00:00" , "availableForChildren" : "true" , "quantity" : 1 , "itemType" : "Drinks" , "fridge" : { "id" : #(catchFridgeId) } }
+        * def putFridgeItems = { "id" : #(fridgeItemCatchId), "name" : "Suco De Uva Integral" , "validDate" : "2026-01-09T10:00:00" , "availableForChildren" : true , "quantity" : 1 , "itemType" : "Drinks" , "fridge" : { "id" : #(catchFridgeId) } }
         * request putFridgeItems
         When method PUT
         Then status 200
