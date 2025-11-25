@@ -10,7 +10,7 @@ Background:
 
         # Primeiro: criar um usuario Parent
         Given path '/users'
-        * def testLoginUser = { "name" : "Andre Gomes" , "email" : "AndreGomes@gmail.com" , "password" : "12010209" , "type" : "Parent" }
+        * def testLoginUser = { "name" : "Diogo Souza" , "email" : "DiogoSouza@gmail.com" , "password" : "12010209" , "type" : "Parent" }
         * request testLoginUser
         When method POST
         Then status 200
@@ -65,24 +65,23 @@ Background:
         Then status 200
         And print "6"
 
-        # Setimo: Excluir o item Suco De Uva Integral
-        Given path '/fridge-items/' , fridgeItemCatchId
-        * header token = catchToken
+        # Setimo: Excluir o usuario por conta para não inclui-lo no banco de dados
+        Given path '/users/' , catchId
         When method DELETE
         Then status 200
         And print "7"
 
-        # Oitavo: Excluir o usuario por conta para não inclui-lo no banco de dados
-        Given path '/users/' , catchId
-        When method DELETE
-        Then status 200
-        And print "8"
-
-       # Nono: Excluir a geladeira para não inclui-la no banco de dados
+       # Oitavo: Excluir a geladeira e os seus itens por costa do cascade all
        Given path '/fridges/' , catchFridgeId
        When method DELETE
        Then status 200
-       And print "9"
+       And print "8"
+
+        # Nono: Verifica se o item foi excluido
+        Given path '/fridge-items'
+        When method GET
+        Then status 200
+        And match response == []
 
 
 
@@ -92,6 +91,7 @@ Background:
        Given path '/fridge-items'
        When method GET
        Then status 200
+       And match response == []
 
 
 
