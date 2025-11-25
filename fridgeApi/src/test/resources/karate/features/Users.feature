@@ -81,14 +81,14 @@ Background:
       Given path '/users'
       When method GET
       Then status 200
-      And print response
+      And print "Teste numero 4" + response
 
 
 
     Scenario: '5' The user logs into the system and receives a token.
 
       Given path '/users'
-      * def testLoginUser = { "name" : "Andre Gomes" , "email" : "AndreGomes@gmail.com" , "password" : "12010209" , "type" : "Parent" }
+      * def testLoginUser = { "name" : "CaueLuz" , "email" : "CaueLuz@gmail.com" , "password" : "12010209" , "type" : "Parent" }
       * request testLoginUser
       When method POST
       Then status 200

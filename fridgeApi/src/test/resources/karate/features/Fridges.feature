@@ -80,7 +80,7 @@ Background:
     Given path '/fridges'
     When method GET
     Then status 200
-    And print response
+    And print "Teste Numero 4" + response
 
 
 
