@@ -82,13 +82,14 @@ public class UsersServiceImplTest {
     }
 
     @Test
-    public void UsersServiceImpl_deleteUser_ReturnsSuccess() {
-        doNothing().when(usersRepository).deleteById(any(Long.class));
+    public void UsersServiceImpl_deleteUser_ReturnsSuccess() {/// /////
+        when(usersRepository.existsById(2L)).thenReturn(true);
+        doNothing().when(usersRepository).deleteById(2L);
 
-        String result = usersService.deleteUser(Long.valueOf(1));
+        String result = usersService.deleteUser(2L);
 
         assertEquals("Success", result);
-        verify(usersRepository, times(1)).deleteById(Long.valueOf(1));
+        verify(usersRepository, times(1)).deleteById(2L);
     }
 
     @Test
@@ -104,20 +105,25 @@ public class UsersServiceImplTest {
     }
 
     @Test
-    public void UsersServiceImpl_loginUser_ThrowsExceptionWhenUserNotFound() {
+    public void UsersServiceImpl_loginUser_ThrowsExceptionWhenUserNotFound() { /// //////
         when(usersRepository.findByEmail(anyString())).thenReturn(Optional.empty());
 
-        assertThrows(RuntimeException.class, () -> usersService.loginUser("nonexistent@example.com", "password123"));
-        verify(usersRepository, times(1)).findByEmail("nonexistent@example.com");
+        LoginResponse response = usersService.loginUser("x@x.com", "password");
+
+        assertEquals("error", response.status());
+        assertEquals("User not found", response.token());
     }
 
     @Test
-    public void UsersServiceImpl_loginUser_ReturnsEmptyStringOnIncorrectPassword() {
+    public void UsersServiceImpl_loginUser_ReturnsEmptyStringOnIncorrectPassword() {  /// //////
         when(usersRepository.findByEmail(user.getEmail())).thenReturn(Optional.of(user));
 
-        LoginResponse  result = usersService.loginUser(user.getEmail(), "wrongPassword");
+        LoginResponse result = usersService.loginUser(user.getEmail(), "wrongPassword");
 
-        assertEquals("", result);
+        assertEquals("error", result.status());
+        assertEquals("password incorrect", result.token());
+
+
         verify(usersRepository, times(1)).findByEmail(user.getEmail());
     }
 }
