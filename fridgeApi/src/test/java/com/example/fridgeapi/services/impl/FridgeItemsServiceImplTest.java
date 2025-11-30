@@ -3,6 +3,7 @@ package com.example.fridgeapi.services.impl;
 import com.example.fridgeapi.models.FridgeItems;
 import com.example.fridgeapi.models.FridgeItemsLog;
 import com.example.fridgeapi.models.Fridges;
+import com.example.fridgeapi.models.UserType;
 import com.example.fridgeapi.models.Users;
 import com.example.fridgeapi.repositories.FridgeItemsLogRepository;
 import com.example.fridgeapi.repositories.FridgeItemsRepository;
@@ -53,6 +54,7 @@ class FridgeItemsServiceimplTest {
         mockUser.setId(1L);
         mockUser.setName("User");
         mockUser.setToken("token");
+        mockUser.setType(UserType.Parent);
     }
 
     @Test
@@ -94,7 +96,8 @@ class FridgeItemsServiceimplTest {
 
         FridgeItems result = fridgeItemsService.createFridgeItem(newItem);
 
-        assertEquals("Success", result);
+        assertNotNull(result);
+        assertEquals("Milk", result.getName());
 
         FridgeItems savedItem = itemCaptor.getValue();
 
@@ -131,7 +134,7 @@ class FridgeItemsServiceimplTest {
 
     @Test
     void testDeleteFridgeItem_ShouldCallDeleteByIdAndReturnSuccess() {
-        Long itemId = 2L;
+        Long itemId = 1L;
         ArgumentCaptor<FridgeItemsLog> logCaptor = ArgumentCaptor.forClass(FridgeItemsLog.class);
 
         when(fridgeItemsRepository.findById(itemId)).thenReturn(Optional.ofNullable(mockFridgeItem));
