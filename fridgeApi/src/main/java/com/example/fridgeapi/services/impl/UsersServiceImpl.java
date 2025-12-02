@@ -45,7 +45,7 @@ public class UsersServiceImpl implements UsersService {
         if (usersRepository.existsById(userId)) {
 
             usersRepository.deleteById(userId);
-            return "User Deleted";
+            return "Success";
 
         } else {
             throw new RuntimeException("User not found");
